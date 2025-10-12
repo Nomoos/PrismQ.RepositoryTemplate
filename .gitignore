@@ -28,12 +28,43 @@ env/
 # Environment variables
 .env
 
-# IDEs
+# IDEs - Visual Studio Code
 .vscode/
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
+
+# IDEs - JetBrains (PyCharm, Rider, IntelliJ IDEA, WebStorm, etc.)
 .idea/
+.idea/**/workspace.xml
+.idea/**/tasks.xml
+.idea/**/usage.statistics.xml
+.idea/**/dictionaries
+.idea/**/shelf
+.idea/**/contentModel.xml
+.idea/**/dataSources/
+.idea/**/dataSources.ids
+.idea/**/dataSources.local.xml
+.idea/**/sqlDataSources.xml
+.idea/**/dynamic.xml
+.idea/**/uiDesigner.xml
+.idea/**/dbnavigator.xml
+.idea/**/gradle.xml
+.idea/**/libraries
+*.iws
+*.iml
+*.ipr
+out/
+.idea_modules/
+
+# IDEs - Vim/Emacs
 *.swp
 *.swo
 *~
+.netrwhist
 
 # Database
 *.db
