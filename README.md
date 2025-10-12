@@ -40,9 +40,9 @@ PrismQ.RepositoryTemplate/
 │   └── README.md              # Issue tracking guide
 ├── scripts/                    # Utility scripts
 │   ├── setup.bat              # Windows setup script
-│   ├── setup.sh               # Linux/Mac setup script
+│   ├── setup.sh               # Linux setup script (development only)
 │   ├── quickstart.bat         # Windows quick start
-│   ├── quickstart.sh          # Linux/Mac quick start
+│   ├── quickstart.sh          # Linux quick start (development only)
 │   └── README.md              # Scripts documentation
 ├── src/                        # Source code
 │   ├── __init__.py            # Package initialization
@@ -64,13 +64,13 @@ PrismQ.RepositoryTemplate/
 ### Prerequisites
 
 - Python 3.10 or higher
-- Windows OS (primary target platform)
+- Windows OS (required)
 - NVIDIA RTX 5090 with latest drivers
 - 64GB RAM
 
 ### Installation
 
-#### Windows (Recommended)
+#### Windows
 
 1. Clone this template repository:
    ```batch
@@ -94,17 +94,7 @@ PrismQ.RepositoryTemplate/
    scripts\quickstart.bat
    ```
 
-#### Linux/Mac (Development)
-
-```bash
-git clone https://github.com/Nomoos/PrismQ.RepositoryTemplate.git YourModuleName
-cd YourModuleName
-chmod +x scripts/*.sh
-./scripts/setup.sh
-cp .env.example .env
-# Edit .env with your configuration
-./scripts/quickstart.sh
-```
+> **Note for Linux users**: Limited Linux support is available for development purposes only. See the scripts folder for Linux shell scripts. macOS is not supported.
 
 ## 🛠️ Development
 
@@ -127,10 +117,9 @@ cp .env.example .env
 
 ### Running Tests
 
-```bash
-# Activate virtual environment first
-venv\Scripts\activate  # Windows
-source venv/bin/activate  # Linux/Mac
+```batch
+# Activate virtual environment first (Windows)
+venv\Scripts\activate
 
 # Run tests
 pytest
@@ -138,6 +127,8 @@ pytest
 # Run tests with coverage
 pytest --cov=src --cov-report=html
 ```
+
+> **Note for Linux users**: Use `source venv/bin/activate` to activate the virtual environment on Linux.
 
 ## 📚 Documentation
 
