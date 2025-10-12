@@ -1,6 +1,7 @@
 #!/bin/bash
-# PrismQ Module Quick Start Script
-# Note: Primary target is Windows, but this script supports Linux/Mac development
+# PrismQ Module Quick Start Script for Linux
+# Note: Windows is the primary target platform. This script provides limited Linux support for development only.
+# macOS is not supported.
 
 set -e
 
@@ -32,7 +33,8 @@ fi
 
 echo
 echo "Running PrismQ module..."
-echo "Note: Primary target is Windows with NVIDIA RTX 5090, AMD Ryzen, 64GB RAM"
+echo "Note: Windows is the primary target platform (NVIDIA RTX 5090, AMD Ryzen, 64GB RAM)"
+echo "      This Linux script is for development purposes only. macOS is not supported."
 echo
 
 # Run the module

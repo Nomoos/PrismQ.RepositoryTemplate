@@ -1,6 +1,7 @@
 #!/bin/bash
-# PrismQ Module Setup Script
-# Note: Primary target is Windows, but this script supports Linux/Mac development
+# PrismQ Module Setup Script for Linux
+# Note: Windows is the primary target platform. This script provides limited Linux support for development only.
+# macOS is not supported.
 
 set -e
 
