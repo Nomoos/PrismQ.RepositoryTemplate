@@ -39,11 +39,65 @@ env/
 *.db
 *.sqlite
 *.sqlite3
+*.db-shm
+*.db-wal
+*.db-journal
+
+# C# / .NET
+bin/
+obj/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.dll
+*.exe
+!*.exe.config
+*.mdb
+*.opendb
+*.VC.db
+*.VC.VC.opendb
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+[Ww][Ii][Nn]32/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+.vs/
+*.pidb.meta
+*.pdb.meta
+*.mdb.meta
+
+# NuGet Packages
+*.nupkg
+*.snupkg
+**/[Pp]ackages/*
+!**/[Pp]ackages/build/
+project.lock.json
+project.fragment.lock.json
+artifacts/
 
 # Test coverage
 .coverage
 htmlcov/
 .pytest_cache/
+coverage.xml
+*.cover
+*.py,cover
+TestResults/
 
 # OS
 .DS_Store
@@ -56,3 +110,5 @@ Thumbs.db
 data/
 output/
 temp/
+cache/
+models/
