@@ -4,7 +4,7 @@ Copyright (c) 2025 PrismQ
 
 **All Rights Reserved**
 
-This repository (PrismQ.RepositoryTemplate) is based on the structure of PrismQ.IdeaCollector and is proprietary and confidential.
+This repository (PrismQ.RepositoryTemplate) is a proprietary template for creating new PrismQ modules.
 
 ## Terms and Conditions
 
@@ -29,4 +29,4 @@ For licensing inquiries, please contact PrismQ.
 
 ---
 
-**Note**: This repository template is based on the project structure originally developed for PrismQ.IdeaCollector and maintains the same proprietary licensing terms.
+**Note**: This is a proprietary template repository for starting new PrismQ modules with standardized structure and licensing terms.
