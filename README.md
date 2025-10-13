@@ -9,7 +9,7 @@ This template provides a standardized structure for developing PrismQ modules th
 ### Related PrismQ Projects
 - **PrismQ.IdeaInspiration.Scoring** - Score idea inspirations
 - **PrismQ.IdeaInspiration.Classification** - Classify idea inspirations
-- **[PrismQ.IdeaCollector](https://github.com/Nomoos/PrismQ.IdeaCollector)** - Gather idea inspirations from various sources
+- **[PrismQ.IdeaInspiration.Sources](https://github.com/Nomoos/PrismQ.IdeaInspiration.Sources)** - Gather idea inspirations from various sources
 - **[StoryGenerator](https://github.com/Nomoos/StoryGenerator)** - Automated story and video generation pipeline
 - **Other PrismQ Modules** - Specialized tools for content generation
 
