@@ -10,20 +10,30 @@ echo "PrismQ Module Setup"
 echo "====================================="
 echo
 
+# Set default Python executable
+PYTHON_EXEC="python3"
+
+# Read PYTHON_EXECUTABLE from .env if it exists
+if [ -f ".env" ]; then
+    if grep -q "^PYTHON_EXECUTABLE=" .env; then
+        PYTHON_EXEC=$(grep "^PYTHON_EXECUTABLE=" .env | cut -d '=' -f 2)
+    fi
+fi
+
 # Check Python installation
-if ! command -v python3 &> /dev/null; then
-    echo "ERROR: Python 3 is not installed"
-    echo "Please install Python 3.10 or higher"
+if ! command -v "$PYTHON_EXEC" &> /dev/null; then
+    echo "ERROR: Python executable '$PYTHON_EXEC' is not found"
+    echo "Please install Python 3.10 or higher or update PYTHON_EXECUTABLE in .env"
     exit 1
 fi
 
-echo "Python found!"
+echo "Python found: $PYTHON_EXEC"
 echo
 
 # Create virtual environment
 echo "Creating virtual environment..."
 if [ ! -d "venv" ]; then
-    python3 -m venv venv
+    "$PYTHON_EXEC" -m venv venv
     echo "Virtual environment created."
 else
     echo "Virtual environment already exists."

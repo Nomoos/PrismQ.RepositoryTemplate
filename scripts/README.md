@@ -28,6 +28,26 @@ Run the quick start script to test the module:
 scripts\quickstart.bat
 ```
 
+### Configuring Python Executable
+
+The setup scripts support configurable Python executables. To use a specific Python version:
+
+1. Copy `.env.example` to `.env` (if not already done)
+2. Set the `PYTHON_EXECUTABLE` variable:
+   ```
+   PYTHON_EXECUTABLE=python
+   # or
+   PYTHON_EXECUTABLE=python3.10
+   # or
+   PYTHON_EXECUTABLE=C:\Python310\python.exe
+   ```
+3. Run the setup script - it will use your specified Python executable
+
+This is useful when:
+- You have multiple Python versions installed
+- Different subprojects require different Python versions
+- You need to use a specific Python installation
+
 ## Target Platform
 
 These scripts are optimized for:

@@ -26,3 +26,13 @@ def test_config_api_key():
     config = Config()
     # Should return None for non-existent keys
     assert config.get_api_key("nonexistent") is None
+
+
+def test_config_python_executable():
+    """Test Python executable configuration."""
+    config = Config()
+    # Should have a default value
+    assert config.python_executable is not None
+    assert isinstance(config.python_executable, str)
+    # Default should be "python"
+    assert config.python_executable == os.getenv("PYTHON_EXECUTABLE", "python")
