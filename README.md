@@ -174,6 +174,10 @@ APP_NAME=PrismQ.YourModule
 APP_ENV=development
 DEBUG=true
 
+# Python Configuration
+# Specify which Python executable to use for virtual environments
+PYTHON_EXECUTABLE=python  # or python3, python3.10, C:\Python310\python.exe, etc.
+
 # Add your API keys
 OPENAI_API_KEY=your_key_here
 
@@ -181,6 +185,20 @@ OPENAI_API_KEY=your_key_here
 INPUT_DIR=./input
 OUTPUT_DIR=./output
 ```
+
+### Python Executable Configuration
+
+The `PYTHON_EXECUTABLE` setting allows you to specify which Python interpreter to use when creating virtual environments. This is particularly useful when:
+
+- You have multiple Python versions installed
+- Working across different subprojects with different Python requirements
+- Using specific Python installations with custom configurations
+
+**Examples:**
+- Windows: `PYTHON_EXECUTABLE=python` or `PYTHON_EXECUTABLE=C:\Python310\python.exe`
+- Linux: `PYTHON_EXECUTABLE=python3` or `PYTHON_EXECUTABLE=/usr/bin/python3.11`
+
+The setup scripts (`scripts/setup.bat` and `scripts/setup.sh`) will automatically use this configuration when creating the virtual environment.
 
 ## 🚨 Hardware Requirements
 

@@ -18,6 +18,9 @@ class Config:
         self.debug: bool = os.getenv("DEBUG", "false").lower() == "true"
         self.log_level: str = os.getenv("LOG_LEVEL", "INFO")
         
+        # Python Configuration
+        self.python_executable: str = os.getenv("PYTHON_EXECUTABLE", "python")
+        
         # Paths
         self.input_dir: Path = Path(os.getenv("INPUT_DIR", "./input"))
         self.output_dir: Path = Path(os.getenv("OUTPUT_DIR", "./output"))
