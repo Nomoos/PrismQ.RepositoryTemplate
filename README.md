@@ -7,7 +7,8 @@ A comprehensive template repository for creating new PrismQ modules - specialize
 This template provides a standardized structure for developing PrismQ modules that are part of the AI-powered content generation ecosystem. PrismQ modules work together to automate various stages of content creation, from idea generation to final video production.
 
 ### Related PrismQ Projects
-
+- **PrismQ.IdeaInspiration.Scoring** - Score idea inspirations
+- **PrismQ.IdeaInspiration.Classification** - Classify idea inspirations
 - **[PrismQ.IdeaCollector](https://github.com/Nomoos/PrismQ.IdeaCollector)** - Gather idea inspirations from various sources
 - **[StoryGenerator](https://github.com/Nomoos/StoryGenerator)** - Automated story and video generation pipeline
 - **Other PrismQ Modules** - Specialized tools for content generation
