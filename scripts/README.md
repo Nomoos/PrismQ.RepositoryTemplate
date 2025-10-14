@@ -6,18 +6,15 @@ This directory contains utility scripts for the PrismQ module.
 
 ### Setup Scripts
 
-- **setup.bat** - Windows setup script (primary)
-- **setup.sh** - Linux setup script (development only)
+- **setup.bat** - Windows setup script
 
 ### Quick Start Scripts
 
-- **quickstart.bat** - Quick start for Windows (primary)
-- **quickstart.sh** - Quick start for Linux (development only)
+- **quickstart.bat** - Quick start for Windows
 
 ### Module Sync Scripts
 
-- **sync-modules.bat** - Sync modules using git subtree (Windows)
-- **sync-modules.sh** - Sync modules using git subtree (Linux/macOS)
+- **sync-modules.bat** - Sync modules using git subtree
 
 ## Usage
 
@@ -72,8 +69,6 @@ These scripts are optimized for:
 - **GPU**: NVIDIA RTX 5090
 - **CPU**: AMD Ryzen
 - **RAM**: 64GB
-
-> **Note**: Linux support is provided for development purposes only. macOS is not supported.
 
 ## Creating New Scripts
 
