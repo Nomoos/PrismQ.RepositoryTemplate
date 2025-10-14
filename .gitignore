@@ -131,7 +131,6 @@ coverage.xml
 TestResults/
 
 # OS
-.DS_Store
 Thumbs.db
 
 # Logs

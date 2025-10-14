@@ -118,7 +118,6 @@ goto :main
         echo *~
         echo.
         echo # OS
-        echo .DS_Store
         echo Thumbs.db
     ) > "%MODULE_DIR%\.gitignore"
     

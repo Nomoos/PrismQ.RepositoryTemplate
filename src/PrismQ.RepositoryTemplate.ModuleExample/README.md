@@ -69,11 +69,6 @@ pytest
 
 This module can be synchronized using the repository's sync scripts:
 
-**Linux/macOS:**
-```bash
-./scripts/sync-modules.sh src/PrismQ.RepositoryTemplate.ModuleExample
-```
-
 **Windows:**
 ```batch
 scripts\sync-modules.bat src\PrismQ.RepositoryTemplate.ModuleExample
