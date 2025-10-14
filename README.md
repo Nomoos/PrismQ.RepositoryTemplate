@@ -134,6 +134,7 @@ pytest --cov=src --cov-report=html
 ## 📚 Documentation
 
 - **[Contributing Guide](docs/CONTRIBUTING.md)** - How to contribute to the project
+- **[PEP Standards](docs/PEP_STANDARDS.md)** - Python Enhancement Proposals we follow
 - **[Documentation Overview](docs/README.md)** - Documentation structure and guidelines
 - **[Known Issues](issues/KNOWN_ISSUES.md)** - Current known issues
 - **[Roadmap](issues/ROADMAP.md)** - Future development plans
@@ -147,6 +148,9 @@ This is a proprietary template repository. For contribution guidelines, see [CON
 ### Included in Template
 
 - ✅ Python project structure with best practices
+- ✅ PEP-compliant configuration (PEP 517/518/621/660)
+- ✅ Type checking with MyPy (PEP 484/526/544/561)
+- ✅ Code quality with Ruff (PEP 8/257)
 - ✅ Configuration management with environment variables
 - ✅ Test framework setup (pytest)
 - ✅ Documentation structure
