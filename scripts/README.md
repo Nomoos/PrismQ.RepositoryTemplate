@@ -12,13 +12,21 @@ This directory contains utility scripts for the PrismQ module.
 
 - **quickstart.bat** - Quick start for Windows
 
-### Module Sync Scripts
+### Module Management Scripts
 
+- **add-module.bat** - Create a new module with proper structure
 - **sync-modules.bat** - Sync modules using git subtree
 
 ## Usage
 
 ### Windows
+
+Create a new module:
+```batch
+scripts\add-module.bat ModuleName
+REM or with custom remote URL
+scripts\add-module.bat ModuleName https://github.com/Nomoos/ModuleName.git
+```
 
 Run the setup script to install dependencies:
 ```batch
