@@ -108,11 +108,6 @@ EOF
 ### 3. Verify Configuration
 Run the sync script to verify your module is discovered:
 
-**Linux/macOS:**
-```bash
-./scripts/sync-modules.sh --list
-```
-
 **Windows:**
 ```batch
 scripts\sync-modules.bat --list
@@ -121,11 +116,6 @@ scripts\sync-modules.bat --list
 You should see your module listed with its auto-generated remote name.
 
 ### 4. Sync the Module
-**Linux/macOS:**
-```bash
-./scripts/sync-modules.sh src/YourModule
-```
-
 **Windows:**
 ```batch
 scripts\sync-modules.bat src\YourModule

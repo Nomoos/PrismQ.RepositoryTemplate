@@ -26,8 +26,6 @@ This module is designed for:
 - **CPU**: AMD Ryzen processor
 - **RAM**: 64GB
 
-> **Note**: Limited Linux support is available for development purposes only. macOS is not supported.
-
 ## Related Projects
 
 This module is part of the PrismQ ecosystem for AI-powered content generation:
