@@ -286,13 +286,8 @@ src/
 Virtual environments are created using the built-in `venv` module:
 
 ```bash
-# Windows
 python -m venv venv
 venv\Scripts\activate
-
-# Linux (development only)
-python -m venv venv
-source venv/bin/activate
 ```
 
 **Benefits**:
