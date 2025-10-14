@@ -187,14 +187,11 @@ If you're migrating from the old `REMOTE.md` format:
    }
    ```
 
-2. **Remove `REMOTE.md`** (optional, but recommended):
-   ```bash
-   rm src/YourModule/REMOTE.md
-   ```
+2. **Remove `REMOTE.md`** (optional, but recommended)
 
 3. **Test the configuration**:
-   ```bash
-   ./scripts/sync-modules.sh --list
+   ```batch
+   scripts\sync-modules.bat --list
    ```
 
 The remote name will be auto-generated from the URL, which may differ from your old manual remote name. This is expected behavior.
