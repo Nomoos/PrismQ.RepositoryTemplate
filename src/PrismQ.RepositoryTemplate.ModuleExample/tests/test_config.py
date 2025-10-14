@@ -8,7 +8,7 @@ from pathlib import Path
 module_src = Path(__file__).parent.parent / "src"
 sys.path.insert(0, str(module_src))
 
-from config import ModuleConfig
+from config import ModuleConfig  # noqa: E402
 
 
 def test_config_defaults():
