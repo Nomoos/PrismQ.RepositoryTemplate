@@ -13,19 +13,19 @@ REM Function to print colored output (simulated with echo)
 goto :main
 
 :print_info
-    echo [INFO] %~1
+    echo [INFO] %~1 >&2
     exit /b
 
 :print_success
-    echo [SUCCESS] %~1
+    echo [SUCCESS] %~1 >&2
     exit /b
 
 :print_warning
-    echo [WARNING] %~1
+    echo [WARNING] %~1 >&2
     exit /b
 
 :print_error
-    echo [ERROR] %~1
+    echo [ERROR] %~1 >&2
     exit /b
 
 REM Function to check if module.json exists and extract URL
