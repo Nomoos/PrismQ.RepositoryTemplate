@@ -14,6 +14,11 @@ This directory contains utility scripts for the PrismQ module.
 - **quickstart.bat** - Quick start for Windows (primary)
 - **quickstart.sh** - Quick start for Linux (development only)
 
+### Module Sync Scripts
+
+- **sync-modules.bat** - Sync modules using git subtree (Windows)
+- **sync-modules.sh** - Sync modules using git subtree (Linux/macOS)
+
 ## Usage
 
 ### Windows
@@ -26,6 +31,18 @@ scripts\setup.bat
 Run the quick start script to test the module:
 ```batch
 scripts\quickstart.bat
+```
+
+Sync modules from their remote repositories:
+```batch
+REM List all modules
+scripts\sync-modules.bat --list
+
+REM Sync all modules
+scripts\sync-modules.bat --all
+
+REM Sync a specific module
+scripts\sync-modules.bat src\YourModule
 ```
 
 ### Configuring Python Executable
