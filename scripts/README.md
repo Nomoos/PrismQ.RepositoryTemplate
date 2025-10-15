@@ -7,10 +7,23 @@ This directory contains utility scripts for the PrismQ module.
 ### Setup Scripts
 
 - **setup.bat** - Windows setup script
+  - Creates virtual environment
+  - Installs dependencies
+  - Configures Python environment
 
 ### Quick Start Scripts
 
 - **quickstart.bat** - Quick start for Windows
+  - Activates virtual environment
+  - Runs the main module
+
+### Development Quality Scripts
+
+- **format.bat** - Format code using Ruff formatter
+- **lint.bat** - Lint code using Ruff
+- **typecheck.bat** - Type check code using MyPy
+- **test.bat** - Run tests with pytest and coverage
+- **check-all.bat** - Run all quality checks (format, lint, typecheck, test)
 
 ### Module Management Scripts
 
@@ -36,6 +49,24 @@ scripts\setup.bat
 Run the quick start script to test the module:
 ```batch
 scripts\quickstart.bat
+```
+
+Run code quality checks:
+```batch
+REM Format code
+scripts\format.bat
+
+REM Lint code
+scripts\lint.bat
+
+REM Type check
+scripts\typecheck.bat
+
+REM Run tests
+scripts\test.bat
+
+REM Run all checks at once
+scripts\check-all.bat
 ```
 
 Sync modules from their remote repositories:
