@@ -12,6 +12,12 @@ This directory contains utility scripts for the PrismQ module.
 
 - **quickstart.bat** - Quick start for Windows
 
+### Development Scripts
+
+- **lint.bat** - Run code quality checks (ruff check + mypy)
+- **format.bat** - Format code with Ruff (PEP 8)
+- **test.bat** - Run tests with pytest
+
 ### Module Management Scripts
 
 - **add-module.bat** - Create a new module with proper structure
@@ -36,6 +42,18 @@ scripts\setup.bat
 Run the quick start script to test the module:
 ```batch
 scripts\quickstart.bat
+```
+
+Run development scripts for code quality:
+```batch
+REM Format code (PEP 8)
+scripts\format.bat
+
+REM Lint code (PEP 8, PEP 257) and type check (PEP 484, 526, 544)
+scripts\lint.bat
+
+REM Run tests
+scripts\test.bat
 ```
 
 Sync modules from their remote repositories:
