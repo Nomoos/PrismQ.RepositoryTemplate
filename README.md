@@ -129,6 +129,8 @@ pytest --cov=src --cov-report=html
 
 - **[Contributing Guide](docs/CONTRIBUTING.md)** - How to contribute to the project
 - **[PEP Standards](docs/PEP_STANDARDS.md)** - Python Enhancement Proposals we follow
+- **[SOLID Principles](docs/SOLID_PRINCIPLES.md)** - Design principles for maintainable code
+- **[AI Coding Guidelines](docs/AI_CODING_GUIDELINES.md)** - Best practices for AI-assisted development
 - **[Documentation Overview](docs/README.md)** - Documentation structure and guidelines
 - **[Known Issues](issues/KNOWN_ISSUES.md)** - Current known issues
 - **[Roadmap](issues/ROADMAP.md)** - Future development plans
@@ -145,9 +147,11 @@ This is a proprietary template repository. For contribution guidelines, see [CON
 - ✅ PEP-compliant configuration (PEP 517/518/621/660)
 - ✅ Type checking with MyPy (PEP 484/526/544/561)
 - ✅ Code quality with Ruff (PEP 8/257)
+- ✅ SOLID principles documentation and guidelines
+- ✅ AI-assisted coding best practices (GitHub Copilot guidelines)
 - ✅ Configuration management with environment variables
 - ✅ Test framework setup (pytest)
-- ✅ Documentation structure
+- ✅ Comprehensive documentation structure
 - ✅ Issue tracking system
 - ✅ Setup and quickstart scripts
 - ✅ GitHub templates (issues, PRs)

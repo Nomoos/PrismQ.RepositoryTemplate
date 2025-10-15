@@ -45,15 +45,27 @@ Thank you for your interest in contributing to this PrismQ module!
 
 ## Coding Standards
 
-PrismQ follows several Python Enhancement Proposals (PEPs) for code quality and consistency. See [docs/PEP_STANDARDS.md](PEP_STANDARDS.md) for full details.
+PrismQ follows several Python Enhancement Proposals (PEPs) for code quality and consistency, along with SOLID design principles. See the following documents for full details:
+
+- **[PEP Standards](PEP_STANDARDS.md)** - Python Enhancement Proposals we follow
+- **[SOLID Principles](SOLID_PRINCIPLES.md)** - Design principles for maintainable code
+- **[AI Coding Guidelines](AI_CODING_GUIDELINES.md)** - Best practices for AI-assisted development
 
 ### Key Requirements
 
+#### Code Style (PEP Standards)
 - **PEP 8**: Follow the style guide using Ruff for formatting and linting
 - **PEP 257**: Write Google-style docstrings for all public functions and classes
 - **PEP 484/526**: Use type hints for all function parameters, return values, and variables
 - **PEP 544**: Use Protocols for interface definitions
 - **PEP 328**: Prefer absolute imports over relative imports
+
+#### Design Principles (SOLID)
+- **Single Responsibility**: Each class should have one reason to change
+- **Open/Closed**: Open for extension, closed for modification
+- **Liskov Substitution**: Subtypes must be substitutable for their base types
+- **Interface Segregation**: Clients shouldn't depend on unused interfaces
+- **Dependency Inversion**: Depend on abstractions, not concretions
 
 ### Code Quality Tools
 
