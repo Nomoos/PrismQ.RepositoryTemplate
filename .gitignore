@@ -22,6 +22,7 @@ wheels/
 
 # Documentation builds
 docs/sphinx/build/
+doc/build/
 
 # Virtual environments
 venv/
