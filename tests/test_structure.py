@@ -73,3 +73,47 @@ def test_pyproject_toml_packages_config():
     # Should have a comment about mod/
     assert "mod/" in content, \
         "pyproject.toml should document mod/ directory purpose"
+
+
+def test_doc_directory_exists():
+    """Test that doc/ directory exists for documentation."""
+    doc_dir = Path("doc")
+    assert doc_dir.exists(), "doc/ directory should exist"
+    assert doc_dir.is_dir(), "doc/ should be a directory"
+
+
+def test_doc_sphinx_structure():
+    """Test that doc/ has proper Sphinx structure."""
+    doc_source = Path("doc/source")
+    assert doc_source.exists(), "doc/source/ should exist"
+    
+    # Core Sphinx files
+    sphinx_files = [
+        "conf.py",
+        "index.rst",
+    ]
+    
+    for filename in sphinx_files:
+        file_path = doc_source / filename
+        assert file_path.exists(), f"doc/source/{filename} should exist"
+    
+    # Sphinx directories
+    assert (doc_source / "_static").exists(), "doc/source/_static/ should exist"
+    assert (doc_source / "_templates").exists(), "doc/source/_templates/ should exist"
+
+
+def test_doc_conf_has_autodoc_path():
+    """Test that doc/source/conf.py configures path for autodoc."""
+    conf_py = Path("doc/source/conf.py")
+    content = conf_py.read_text(encoding="utf-8")
+    
+    # Should configure sys.path for autodoc
+    assert "sys.path.insert" in content, \
+        "conf.py should configure sys.path for autodoc"
+    assert "../../src" in content or "'../../src'" in content, \
+        "conf.py should add ../../src to path for autodoc"
+    
+    # Should have autodoc extension
+    assert "sphinx.ext.autodoc" in content, \
+        "conf.py should include sphinx.ext.autodoc extension"
+
