@@ -112,7 +112,25 @@ PrismQ.RepositoryTemplate/
 - **scripts/** - Add utility scripts for common tasks
 - **issues/** - Track issues and roadmap items
 
-### Running Tests
+### Development Workflow
+
+The template includes utility scripts for common development tasks:
+
+```batch
+# Format code (PEP 8 compliance)
+scripts\format.bat
+
+# Run linting and type checking
+scripts\lint.bat
+
+# Run tests with coverage
+scripts\test.bat
+
+# Generate API documentation
+scripts\docs.bat
+```
+
+Alternatively, activate the virtual environment and use commands directly:
 
 ```batch
 # Activate virtual environment first (Windows)
@@ -123,6 +141,10 @@ pytest
 
 # Run tests with coverage
 pytest --cov=src --cov-report=html
+
+# Build documentation
+cd docs\sphinx
+sphinx-build -b html source build\html
 ```
 
 ## 📚 Documentation
@@ -153,10 +175,11 @@ This is a proprietary template repository. For contribution guidelines, see [CON
 - ✅ AI-assisted coding best practices (GitHub Copilot guidelines)
 - ✅ Configuration management with environment variables
 - ✅ **Comprehensive logging system** with module identification and environment detection
-- ✅ Test framework setup (pytest)
+- ✅ Test framework setup (pytest with coverage)
+- ✅ Documentation system with Sphinx (auto-generated API docs)
 - ✅ Comprehensive documentation structure
 - ✅ Issue tracking system
-- ✅ Setup and quickstart scripts
+- ✅ Development scripts (setup, lint, format, test, docs)
 - ✅ GitHub templates (issues, PRs)
 - ✅ Copilot development guidelines
 - ✅ Optimized for Windows + RTX 5090

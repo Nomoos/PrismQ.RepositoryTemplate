@@ -17,6 +17,7 @@ This directory contains utility scripts for the PrismQ module.
 - **lint.bat** - Run code quality checks (ruff check + mypy)
 - **format.bat** - Format code with Ruff (PEP 8)
 - **test.bat** - Run tests with pytest
+- **docs.bat** - Build Sphinx documentation
 
 ### Module Management Scripts
 
@@ -54,6 +55,9 @@ scripts\lint.bat
 
 REM Run tests
 scripts\test.bat
+
+REM Build documentation
+scripts\docs.bat
 ```
 
 Sync modules from their remote repositories:
