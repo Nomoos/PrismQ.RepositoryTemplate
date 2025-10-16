@@ -147,6 +147,7 @@ This is a proprietary template repository. For contribution guidelines, see [CON
 - ✅ PEP-compliant configuration (PEP 517/518/621/660)
 - ✅ Type checking with MyPy (PEP 484/526/544/561)
 - ✅ Code quality with Ruff (PEP 8/257)
+- ✅ UTF-8 encoding standard (`.gitattributes` and `.editorconfig`)
 - ✅ SOLID principles documentation and guidelines
 - ✅ AI-assisted coding best practices (GitHub Copilot guidelines)
 - ✅ Configuration management with environment variables
@@ -201,6 +202,27 @@ The `PYTHON_EXECUTABLE` setting allows you to specify which Python interpreter t
 - `PYTHON_EXECUTABLE=C:\Python310\python.exe` (specific installation)
 
 The setup script (`scripts/setup.bat`) will automatically use this configuration when creating the virtual environment.
+
+### UTF-8 Encoding Standard
+
+This repository enforces UTF-8 encoding as the standard across all text files for maximum cross-platform compatibility. This is configured through:
+
+- **`.gitattributes`**: Ensures Git handles text files with UTF-8 encoding and proper line endings
+  - Linux/Mac files (`.py`, `.sh`, etc.): UTF-8 with LF line endings
+  - Windows files (`.bat`, `.cmd`, `.ps1`): UTF-8 with CRLF line endings
+  - Binary files are explicitly marked to prevent encoding issues
+
+- **`.editorconfig`**: Ensures all editors and IDEs use UTF-8 encoding
+  - Supported by Visual Studio Code, PyCharm, IntelliJ IDEA, Sublime Text, and many others
+  - Automatically applies settings when you open the project
+
+**Benefits:**
+- ✅ Consistent encoding across all platforms (Windows, Linux, Mac)
+- ✅ Proper handling of Unicode characters and emoji
+- ✅ Prevents encoding-related bugs in version control
+- ✅ Industry standard for Git, GitHub, and modern web applications
+
+No additional configuration is needed - the files are automatically applied by Git and modern editors.
 
 ## 🚨 Hardware Requirements
 
