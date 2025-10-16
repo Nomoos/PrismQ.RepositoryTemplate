@@ -44,11 +44,12 @@ def test_python_files_can_use_utf8() -> None:
     test_file = Path("temp_utf8_test.py")
 
     try:
-        # Test writing UTF-8 content
+        # Test writing UTF-8 content with Unicode characters and emoji
+        # Note: No need for '# -*- coding: utf-8 -*-' in Python 3+ (UTF-8 is default)
         utf8_content = (
-            "# -*- coding: utf-8 -*-\n"
-            "# Test UTF-8: Hello 世界 🌍\n"
-            "print('UTF-8 works!')\n"
+            "# Test UTF-8 encoding with Unicode and emoji\n"
+            "text = 'Hello 世界 🌍'\n"
+            "print(f'UTF-8 works! {text}')\n"
         )
         test_file.write_text(utf8_content, encoding="utf-8")
 
@@ -82,6 +83,8 @@ def test_editorconfig_line_endings() -> None:
     # Check for line ending configurations
     assert "end_of_line = lf" in content, "Default line ending should be LF"
     # Windows batch files should use CRLF
+    # Note: Simple string check is sufficient for this validation test.
+    # A full parser would be overkill for just verifying the config is present.
     lines = content.split("\n")
     in_bat_section = False
     for line in lines:
