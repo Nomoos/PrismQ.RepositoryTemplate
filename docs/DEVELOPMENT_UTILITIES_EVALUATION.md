@@ -101,8 +101,6 @@ addopts = "-v --cov=src --cov-report=html --cov-report=term"
 **Present:**
 - ✅ **pyproject.toml** - PEP 517/518/621 compliant
 - ✅ **setuptools** (>= 45) - Build backend
-- ✅ **build** (>= 1.0.0) - Build tool
-- ✅ **scripts/build.bat** - Build script (newly added)
 
 **Configuration** (pyproject.toml):
 ```toml
@@ -117,11 +115,11 @@ description = "PrismQ module template for AI-powered content generation"
 requires-python = ">=3.10"
 ```
 
-**Build Script** (scripts/build.bat):
-- Creates wheel and source distributions
-- Cleans previous builds automatically
-- Provides installation instructions
-- Includes PyPI upload guidance
+**Note**: This template uses standard Python packaging tools. Users can build packages using:
+```bash
+python -m pip install build
+python -m build
+```
 
 **Assessment**: Excellent. Follows modern Python packaging standards (PEP 517/518/621).
 
@@ -146,7 +144,6 @@ dev = [
     "pytest-cov>=4.0.0",
     "ruff>=0.1.0",
     "mypy>=1.0.0",
-    "build>=1.0.0",
 ]
 docs = [
     "sphinx>=7.0.0",
@@ -207,7 +204,6 @@ napoleon_google_docstring = True  # Support Google-style docstrings
 - ✅ **scripts/lint.bat** - Linting and type checking
 - ✅ **scripts/format.bat** - Code formatting
 - ✅ **scripts/test.bat** - Test execution
-- ✅ **scripts/build.bat** - Package building (newly added)
 - ✅ **scripts/docs.bat** - Documentation generation (newly added)
 
 **Features**:
@@ -252,16 +248,15 @@ napoleon_google_docstring = True  # Support Google-style docstrings
 
 To complete the evaluation requirements, the following minimal additions were made:
 
-1. **scripts/build.bat** - Build script for creating distribution packages
-2. **scripts/docs.bat** - Documentation build script for Sphinx
-3. **docs/sphinx/** - Minimal Sphinx configuration:
+1. **scripts/docs.bat** - Documentation build script for Sphinx
+2. **docs/sphinx/** - Minimal Sphinx configuration:
    - source/conf.py - Sphinx configuration with Google-style docstrings
    - source/index.rst - Main documentation page
    - source/modules.rst - API reference template
    - source/_static/ - Static assets directory
    - source/_templates/ - Custom templates directory
-4. **pyproject.toml** - Updated with build and docs dependencies
-5. **.gitignore** - Updated to exclude documentation builds
+3. **pyproject.toml** - Updated with docs dependencies
+4. **.gitignore** - Updated to exclude documentation builds
 
 All additions follow the template's design principles:
 - **Minimal**: Only essential components

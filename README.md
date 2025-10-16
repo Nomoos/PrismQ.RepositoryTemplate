@@ -126,9 +126,6 @@ scripts\lint.bat
 # Run tests with coverage
 scripts\test.bat
 
-# Build distribution packages
-scripts\build.bat
-
 # Generate API documentation
 scripts\docs.bat
 ```
@@ -144,9 +141,6 @@ pytest
 
 # Run tests with coverage
 pytest --cov=src --cov-report=html
-
-# Build package
-python -m build
 
 # Build documentation
 cd docs\sphinx
@@ -182,11 +176,10 @@ This is a proprietary template repository. For contribution guidelines, see [CON
 - ✅ Configuration management with environment variables
 - ✅ **Comprehensive logging system** with module identification and environment detection
 - ✅ Test framework setup (pytest with coverage)
-- ✅ Build system with packaging tools (setuptools, build)
 - ✅ Documentation system with Sphinx (auto-generated API docs)
 - ✅ Comprehensive documentation structure
 - ✅ Issue tracking system
-- ✅ Development scripts (setup, lint, format, test, build, docs)
+- ✅ Development scripts (setup, lint, format, test, docs)
 - ✅ GitHub templates (issues, PRs)
 - ✅ Copilot development guidelines
 - ✅ Optimized for Windows + RTX 5090

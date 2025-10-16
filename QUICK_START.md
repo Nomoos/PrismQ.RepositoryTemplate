@@ -27,9 +27,6 @@ scripts\lint.bat
 # Run tests with coverage
 scripts\test.bat
 
-# Build distribution packages
-scripts\build.bat
-
 # Generate documentation
 scripts\docs.bat
 ```
@@ -44,11 +41,6 @@ scripts\docs.bat
 - **pytest** - Test framework with 81% coverage
 - **pytest-cov** - Coverage reporting
 
-### Build & Packaging
-- **pyproject.toml** - PEP 517/518/621 compliant
-- **setuptools** - Build backend
-- **build** - Package creation
-
 ### Documentation
 - **Sphinx** - Auto-generated API docs
 - **markdown guides** - Comprehensive documentation in docs/
@@ -58,7 +50,6 @@ scripts\docs.bat
 - `format.bat` - Auto-format code
 - `lint.bat` - Check code quality
 - `test.bat` - Run tests
-- `build.bat` - Build packages
 - `docs.bat` - Generate docs
 - `quickstart.bat` - Run the module
 
