@@ -29,7 +29,7 @@ PrismQ.RepositoryTemplate/
 │   ├── ISSUE_TEMPLATE/        # Issue templates
 │   ├── copilot-instructions.md # Copilot development guidelines
 │   └── PULL_REQUEST_TEMPLATE.md
-├── docs/                       # Documentation (add as needed)
+├── docs/                       # Sphinx API documentation (project docs should be added here)
 ├── issues/                     # Issue tracking
 │   ├── new/                   # New issues
 │   ├── wip/                   # Work in progress
@@ -143,7 +143,10 @@ sphinx-build -b html source build\html
 
 ## 🤝 Contributing
 
-This is a proprietary template repository. Contribution guidelines should be added by the actual project.
+This is a proprietary template repository. When using this template for your project:
+1. Add a CONTRIBUTING.md file in the docs/ directory with your project's contribution guidelines
+2. Define coding standards, testing requirements, and review processes
+3. Update this section with a link to your CONTRIBUTING.md file
 
 ## 📋 Features
 
