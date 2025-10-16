@@ -9,6 +9,8 @@ AI-powered generování obsahu.
    :maxdepth: 2
    :caption: Obsah:
 
+   api
+
 Funkce
 ------
 
