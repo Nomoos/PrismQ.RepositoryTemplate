@@ -1,17 +1,20 @@
 """Main entry point for the ModuleExample."""
 
-import logging
+import sys
+from pathlib import Path
 
-from dotenv import load_dotenv
+# Add parent directory to path to import logging_config
+sys.path.insert(0, str(Path(__file__).parent.parent.parent.parent))
 
-# Load environment variables
-load_dotenv()
+from src.logging_config import get_module_logger
 
-# Configure logging
-logging.basicConfig(
-    level=logging.INFO, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+# Initialize module logger with startup information
+logger = get_module_logger(
+    module_name="PrismQ.RepositoryTemplate.ModuleExample",
+    module_version="0.1.0",
+    module_path=str(Path(__file__).parent.parent),
+    log_startup=True,
 )
-logger = logging.getLogger(__name__)
 
 
 def process_example_data(data: str) -> dict[str, str]:
@@ -23,12 +26,17 @@ def process_example_data(data: str) -> dict[str, str]:
     Returns:
         Dictionary containing processed results
     """
-    logger.info(f"Processing data: {data}")
-    return {
+    logger.info("Processing data: %s", data)
+    logger.debug("Data length: %d characters", len(data))
+
+    result = {
         "input": data,
         "output": data.upper(),
         "length": str(len(data)),
     }
+
+    logger.debug("Processing result: %s", result)
+    return result
 
 
 def main() -> None:
@@ -36,16 +44,20 @@ def main() -> None:
 
     This is an example implementation demonstrating module structure.
     """
-    logger.info("PrismQ ModuleExample - Starting")
-    logger.info("Target: Windows, NVIDIA RTX 5090, AMD Ryzen, 64GB RAM")
+    logger.info("Starting example module execution")
 
     # Example processing
     example_data = "Hello, PrismQ!"
+    logger.info("Processing example data")
     result = process_example_data(example_data)
-    logger.info(f"Processing result: {result}")
+    logger.info("Processing result: %s", result)
 
-    logger.info("PrismQ ModuleExample - Complete")
+    logger.info("Example module execution completed successfully")
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except Exception as e:
+        logger.exception("Module execution failed with error: %s", e)
+        raise

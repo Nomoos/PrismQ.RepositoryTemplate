@@ -131,6 +131,7 @@ pytest --cov=src --cov-report=html
 - **[PEP Standards](docs/PEP_STANDARDS.md)** - Python Enhancement Proposals we follow
 - **[SOLID Principles](docs/SOLID_PRINCIPLES.md)** - Design principles for maintainable code
 - **[AI Coding Guidelines](docs/AI_CODING_GUIDELINES.md)** - Best practices for AI-assisted development
+- **[Logging Best Practices](docs/LOGGING.md)** - Comprehensive logging system with module identification
 - **[Documentation Overview](docs/README.md)** - Documentation structure and guidelines
 - **[Known Issues](issues/KNOWN_ISSUES.md)** - Current known issues
 - **[Roadmap](issues/ROADMAP.md)** - Future development plans
@@ -151,6 +152,7 @@ This is a proprietary template repository. For contribution guidelines, see [CON
 - ✅ SOLID principles documentation and guidelines
 - ✅ AI-assisted coding best practices (GitHub Copilot guidelines)
 - ✅ Configuration management with environment variables
+- ✅ **Comprehensive logging system** with module identification and environment detection
 - ✅ Test framework setup (pytest)
 - ✅ Comprehensive documentation structure
 - ✅ Issue tracking system
@@ -166,6 +168,35 @@ This is a proprietary template repository. For contribution guidelines, see [CON
 - ⬜ Comprehensive tests
 - ⬜ Detailed documentation
 - ⬜ Usage examples
+
+## 📊 Logging Features
+
+The template includes a comprehensive logging system designed for better reporting and easier recognition of where the application is running and which module is being used.
+
+### Key Logging Features
+
+- **Module Identification**: Automatically logs module name, version, and location at startup
+- **Environment Detection**: Logs OS, Python version, architecture, and hardware information
+- **Hardware Awareness**: Optional detailed CPU, RAM, and GPU information (with psutil)
+- **Dual Output**: Supports both console and file logging simultaneously
+- **Structured Format**: Includes timestamp, module name, log level, file location, and line number
+- **Flexible Configuration**: Control log level and file output via environment variables
+- **Production Ready**: Easy to switch between development and production logging modes
+
+### Example Output
+
+```
+2025-10-16 16:08:11 - PrismQ.MyModule - INFO - [logging_config.py:109] - Module Information:
+2025-10-16 16:08:11 - PrismQ.MyModule - INFO - [logging_config.py:110] -   Name: PrismQ.MyModule
+2025-10-16 16:08:11 - PrismQ.MyModule - INFO - [logging_config.py:111] -   Version: 1.0.0
+2025-10-16 16:08:11 - PrismQ.MyModule - INFO - [logging_config.py:116] -   Operating System: Windows 11
+2025-10-16 16:08:11 - PrismQ.MyModule - INFO - [logging_config.py:119] -   Processor: AMD Ryzen 9 7950X
+2025-10-16 16:08:11 - PrismQ.MyModule - INFO - [logging_config.py:148] -   CPU: 16 physical cores, 32 logical cores
+2025-10-16 16:08:11 - PrismQ.MyModule - INFO - [logging_config.py:155] -   RAM: 64.00 GB total
+2025-10-16 16:08:11 - PrismQ.MyModule - INFO - [logging_config.py:171] -   GPU: NVIDIA GeForce RTX 5090, 32768 MiB
+```
+
+See **[Logging Documentation](docs/LOGGING.md)** for complete details and best practices.
 
 ## 🔧 Configuration
 

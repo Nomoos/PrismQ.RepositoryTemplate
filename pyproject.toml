@@ -25,6 +25,9 @@ dev = [
     "ruff>=0.1.0",
     "mypy>=1.0.0",
 ]
+logging = [
+    "psutil>=5.9.0",  # For detailed hardware information in logs
+]
 
 [tool.setuptools]
 packages = ["src"]
