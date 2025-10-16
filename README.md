@@ -29,20 +29,14 @@ PrismQ.RepositoryTemplate/
 │   ├── ISSUE_TEMPLATE/        # Issue templates
 │   ├── copilot-instructions.md # Copilot development guidelines
 │   └── PULL_REQUEST_TEMPLATE.md
-├── docs/                       # Documentation
-│   ├── CONTRIBUTING.md        # Contribution guidelines
-│   └── README.md              # Documentation overview
+├── docs/                       # Documentation (add as needed)
 ├── issues/                     # Issue tracking
 │   ├── new/                   # New issues
 │   ├── wip/                   # Work in progress
-│   ├── done/                  # Completed issues
-│   ├── KNOWN_ISSUES.md        # Known issues list
-│   ├── ROADMAP.md             # Project roadmap
-│   └── README.md              # Issue tracking guide
+│   └── done/                  # Completed issues
 ├── scripts/                    # Utility scripts
 │   ├── setup.bat              # Windows setup script
-│   ├── quickstart.bat         # Windows quick start
-│   └── README.md              # Scripts documentation
+│   └── quickstart.bat         # Windows quick start
 ├── src/                        # Source code
 │   ├── __init__.py            # Package initialization
 │   ├── main.py                # Main entry point
@@ -147,20 +141,9 @@ cd docs\sphinx
 sphinx-build -b html source build\html
 ```
 
-## 📚 Documentation
-
-- **[Contributing Guide](docs/CONTRIBUTING.md)** - How to contribute to the project
-- **[PEP Standards](docs/PEP_STANDARDS.md)** - Python Enhancement Proposals we follow
-- **[SOLID Principles](docs/SOLID_PRINCIPLES.md)** - Design principles for maintainable code
-- **[AI Coding Guidelines](docs/AI_CODING_GUIDELINES.md)** - Best practices for AI-assisted development
-- **[Logging Best Practices](docs/LOGGING.md)** - Comprehensive logging system with module identification
-- **[Documentation Overview](docs/README.md)** - Documentation structure and guidelines
-- **[Known Issues](issues/KNOWN_ISSUES.md)** - Current known issues
-- **[Roadmap](issues/ROADMAP.md)** - Future development plans
-
 ## 🤝 Contributing
 
-This is a proprietary template repository. For contribution guidelines, see [CONTRIBUTING.md](docs/CONTRIBUTING.md).
+This is a proprietary template repository. Contribution guidelines should be added by the actual project.
 
 ## 📋 Features
 
@@ -218,8 +201,6 @@ The template includes a comprehensive logging system designed for better reporti
 2025-10-16 16:08:11 - PrismQ.MyModule - INFO - [logging_config.py:155] -   RAM: 64.00 GB total
 2025-10-16 16:08:11 - PrismQ.MyModule - INFO - [logging_config.py:171] -   GPU: NVIDIA GeForce RTX 5090, 32768 MiB
 ```
-
-See **[Logging Documentation](docs/LOGGING.md)** for complete details and best practices.
 
 ## 🔧 Configuration
 
@@ -300,10 +281,7 @@ This repository is proprietary software. See [LICENSE](LICENSE) file for details
 
 ## 💬 Support
 
-For questions, issues, or feature requests:
-1. Check [Known Issues](issues/KNOWN_ISSUES.md)
-2. Review [Documentation](docs/)
-3. Open a new issue using the appropriate template
+For questions, issues, or feature requests, open a new issue using the appropriate template.
 
 ## 🎨 Template Usage
 
