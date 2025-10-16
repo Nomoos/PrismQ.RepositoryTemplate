@@ -34,16 +34,20 @@ PrismQ.RepositoryTemplate/
 │   ├── new/                   # New issues
 │   ├── wip/                   # Work in progress
 │   └── done/                  # Completed issues
+├── mod/                        # Business/domain modules
+│   ├── README.md              # Module directory documentation
+│   └── ModuleExample/         # Example domain module
 ├── scripts/                    # Utility scripts
 │   ├── setup.bat              # Windows setup script
 │   └── quickstart.bat         # Windows quick start
-├── src/                        # Source code
+├── src/                        # Core Python package (infrastructure)
 │   ├── __init__.py            # Package initialization
 │   ├── main.py                # Main entry point
-│   └── config.py              # Configuration management
+│   ├── config.py              # Configuration management
+│   └── logging_config.py      # Logging infrastructure
 ├── tests/                      # Test suite
 │   ├── __init__.py            # Test package initialization
-│   └── test_config.py         # Configuration tests
+│   └── test_*.py              # Test files
 ├── .env.example               # Environment variables template
 ├── .gitignore                 # Git ignore rules
 ├── LICENSE                    # Proprietary license
@@ -100,11 +104,29 @@ PrismQ.RepositoryTemplate/
 
 ### Project Structure Guidelines
 
-- **src/** - Keep your main source code here, organized by functionality
-- **tests/** - Mirror the `src/` structure in your tests
+The repository follows a clear separation of concerns:
+
+- **src/** - Core Python package implementation (infrastructure code)
+  - Configuration management
+  - Logging infrastructure
+  - Core utilities and common functionality
+  - Package initialization
+
+- **mod/** - Business/domain modules (higher-level modules)
+  - Domain-specific implementations
+  - Business logic modules
+  - Application components
+  - Use case orchestration
+
+- **tests/** - Mirror both `src/` and `mod/` structure in your tests
+
 - **docs/** - Add detailed documentation for users and developers
+
 - **scripts/** - Add utility scripts for common tasks
+
 - **issues/** - Track issues and roadmap items
+
+This separation makes it clear what is core functionality (src/) versus higher-level business modules (mod/).
 
 ### Development Workflow
 
