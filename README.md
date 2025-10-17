@@ -16,12 +16,12 @@ This template provides a standardized structure for developing PrismQ modules th
 ## 💻 Target Platform
 
 This template is optimized for:
-- **Operating System**: Windows (primary), Linux (supported)
+- **Operating System**: Windows
 - **GPU**: NVIDIA RTX 5090 (32GB VRAM)
 - **CPU**: AMD Ryzen processor
 - **RAM**: 64GB DDR5
 
-**Note**: Python scripts are optimized for Windows but will work on Linux for development purposes.
+**Note**: Linux shell scripts (`.sh`) are provided for GitHub Copilot Agent usage only.
 
 ## 📁 Repository Structure
 
@@ -63,7 +63,7 @@ PrismQ.RepositoryTemplate/
 ### Prerequisites
 
 - Python 3.10 or higher
-- Windows OS (recommended) or Linux (for development)
+- Windows OS (recommended)
 - NVIDIA RTX 5090 with latest drivers
 - 64GB RAM
 
@@ -93,29 +93,7 @@ PrismQ.RepositoryTemplate/
    scripts\quickstart.bat
    ```
 
-#### Linux / macOS
-
-1. Clone this template repository:
-   ```bash
-   git clone https://github.com/Nomoos/PrismQ.RepositoryTemplate.git YourModuleName
-   cd YourModuleName
-   ```
-
-2. Run setup script:
-   ```bash
-   ./scripts/setup.sh
-   ```
-
-3. Configure environment:
-   ```bash
-   cp .env.example .env
-   # Edit .env with your configuration
-   ```
-
-4. Run the module:
-   ```bash
-   ./scripts/quickstart.sh
-   ```
+> **Note for GitHub Copilot Agents**: Linux shell scripts (`.sh`) are available in the `scripts/` directory for automated agent usage.
 
 ## 🛠️ Development
 
@@ -158,7 +136,6 @@ This separation makes it clear what is core functionality (src/) versus higher-l
 
 The template includes utility scripts for common development tasks:
 
-#### Windows
 ```batch
 # Format code (PEP 8 compliance)
 scripts\format.bat
@@ -173,26 +150,12 @@ scripts\test.bat
 scripts\docs.bat
 ```
 
-#### Linux / macOS
-```bash
-# Format code (PEP 8 compliance)
-./scripts/format.sh
-
-# Run linting and type checking
-./scripts/lint.sh
-
-# Run tests with coverage
-./scripts/test.sh
-
-# Generate API documentation
-./scripts/docs.sh
-```
+> **Note**: Shell script equivalents (`.sh`) are available for GitHub Copilot Agent automation.
 
 Alternatively, activate the virtual environment and use commands directly:
 
-#### Windows
 ```batch
-# Activate virtual environment first (Windows)
+# Activate virtual environment first
 venv\Scripts\activate
 
 # Run tests
@@ -204,22 +167,6 @@ pytest --cov=src --cov-report=html
 # Build documentation
 cd docs\sphinx
 sphinx-build -b html source build\html
-```
-
-#### Linux / macOS
-```bash
-# Activate virtual environment first (Linux/macOS)
-source venv/bin/activate
-
-# Run tests
-pytest
-
-# Run tests with coverage
-pytest --cov=src --cov-report=html
-
-# Build documentation
-cd docs/sphinx
-sphinx-build -b html source build/html
 ```
 
 ## 🤝 Contributing
