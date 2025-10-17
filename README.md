@@ -21,6 +21,8 @@ This template is optimized for:
 - **CPU**: AMD Ryzen processor
 - **RAM**: 64GB DDR5
 
+**Note**: Linux shell scripts (`.sh`) are provided for GitHub Copilot Agent usage only.
+
 ## 📁 Repository Structure
 
 ```
@@ -38,8 +40,8 @@ PrismQ.RepositoryTemplate/
 │   ├── README.md              # Module directory documentation
 │   └── ModuleExample/         # Example domain module
 ├── scripts/                    # Utility scripts
-│   ├── setup.bat              # Windows setup script
-│   └── quickstart.bat         # Windows quick start
+│   ├── setup.bat / setup.sh    # Setup scripts (Windows/Linux)
+│   └── quickstart.bat / quickstart.sh  # Quick start scripts
 ├── src/                        # Core Python package (infrastructure)
 │   ├── __init__.py            # Package initialization
 │   ├── main.py                # Main entry point
@@ -61,7 +63,7 @@ PrismQ.RepositoryTemplate/
 ### Prerequisites
 
 - Python 3.10 or higher
-- Windows OS (required)
+- Windows OS (recommended)
 - NVIDIA RTX 5090 with latest drivers
 - 64GB RAM
 
@@ -90,6 +92,8 @@ PrismQ.RepositoryTemplate/
    ```batch
    scripts\quickstart.bat
    ```
+
+> **Note for GitHub Copilot Agents**: Linux shell scripts (`.sh`) are available in the `scripts/` directory for automated agent usage.
 
 ## 🛠️ Development
 
@@ -146,10 +150,12 @@ scripts\test.bat
 scripts\docs.bat
 ```
 
+> **Note**: Shell script equivalents (`.sh`) are available for GitHub Copilot Agent automation.
+
 Alternatively, activate the virtual environment and use commands directly:
 
 ```batch
-# Activate virtual environment first (Windows)
+# Activate virtual environment first
 venv\Scripts\activate
 
 # Run tests
