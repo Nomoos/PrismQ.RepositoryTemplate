@@ -3,6 +3,8 @@
 # Target: Linux with NVIDIA RTX 5090, AMD Ryzen, 64GB RAM
 # Python scripts are optimized for Windows but will work on Linux too
 
+set -e  # Exit on error
+
 echo "====================================="
 echo "PrismQ Module Lint"
 echo "====================================="
@@ -12,24 +14,36 @@ echo
 if [ ! -d "venv" ]; then
     echo "Virtual environment not found!"
     echo "Please run setup.sh first."
-    read -p "Press Enter to continue..."
+    if [ -z "$CI" ] && [ -z "$GITHUB_ACTIONS" ] && [ -t 0 ]; then
+        read -p "Press Enter to continue..."
+    fi
     exit 1
 fi
 
 # Activate virtual environment
 echo "Activating virtual environment..."
+set +e  # Temporarily allow errors for source command
 source venv/bin/activate
+ACTIVATE_STATUS=$?
+set -e  # Re-enable exit on error
+
+if [ $ACTIVATE_STATUS -ne 0 ]; then
+    echo "ERROR: Failed to activate virtual environment"
+    exit 1
+fi
 
 echo
 echo "Running code quality checks..."
-echo "Target: Linux, NVIDIA RTX 5090, AMD Ryzen, 64GB RAM"
 echo
 
 # Run ruff check (PEP 8, PEP 257 linting)
 echo "Running Ruff linting (PEP 8, PEP 257)..."
+set +e  # Allow ruff to fail, we'll handle it
 ruff check .
+RUFF_STATUS=$?
+set -e
 
-if [ $? -ne 0 ]; then
+if [ $RUFF_STATUS -ne 0 ]; then
     echo
     echo "====================================="
     echo "Linting failed!"
@@ -38,23 +52,15 @@ if [ $? -ne 0 ]; then
     echo "To auto-fix issues, run:"
     echo "  ruff check --fix ."
     echo
-    read -p "Press Enter to continue..."
+    if [ -z "$CI" ] && [ -z "$GITHUB_ACTIONS" ] && [ -t 0 ]; then
+        read -p "Press Enter to continue..."
+    fi
     exit 1
 fi
 
 echo
 echo "Running MyPy type checking (PEP 484, 526, 544)..."
 mypy src/
-
-if [ $? -ne 0 ]; then
-    echo
-    echo "====================================="
-    echo "Type checking failed!"
-    echo "====================================="
-    echo
-    read -p "Press Enter to continue..."
-    exit 1
-fi
 
 echo
 echo "====================================="
@@ -63,4 +69,7 @@ echo "====================================="
 echo "All code quality checks passed."
 echo
 
-read -p "Press Enter to continue..."
+# Skip interactive prompt in CI/automation environments
+if [ -z "$CI" ] && [ -z "$GITHUB_ACTIONS" ] && [ -t 0 ]; then
+    read -p "Press Enter to continue..."
+fi

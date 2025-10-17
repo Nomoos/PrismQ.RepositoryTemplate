@@ -3,6 +3,8 @@
 # Target: Linux with NVIDIA RTX 5090, AMD Ryzen, 64GB RAM
 # Python scripts are optimized for Windows but will work on Linux too
 
+set -e  # Exit on error
+
 echo "====================================="
 echo "PrismQ Module Setup"
 echo "====================================="
@@ -13,12 +15,11 @@ PYTHON_EXEC="python3"
 
 # Read PYTHON_EXECUTABLE from .env if it exists
 if [ -f ".env" ]; then
-    while IFS='=' read -r key value; do
-        if [[ $key == "PYTHON_EXECUTABLE" ]]; then
-            # Remove any quotes and trim whitespace
-            PYTHON_EXEC=$(echo "$value" | tr -d '"' | tr -d "'" | xargs)
-        fi
-    done < .env
+    # Use grep and sed for robust parsing, handle comments and spaces
+    PYTHON_EXEC_FROM_ENV=$(grep -E "^PYTHON_EXECUTABLE=" .env | sed 's/^PYTHON_EXECUTABLE=//' | tr -d '"' | tr -d "'" | xargs || echo "")
+    if [ -n "$PYTHON_EXEC_FROM_ENV" ]; then
+        PYTHON_EXEC="$PYTHON_EXEC_FROM_ENV"
+    fi
 fi
 
 # Check Python installation
@@ -61,4 +62,7 @@ echo "To run the module:"
 echo "  python -m src.main"
 echo
 
-read -p "Press Enter to continue..."
+# Skip interactive prompt in CI/automation environments
+if [ -z "$CI" ] && [ -z "$GITHUB_ACTIONS" ] && [ -t 0 ]; then
+    read -p "Press Enter to continue..."
+fi
