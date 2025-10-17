@@ -62,7 +62,7 @@ echo "To run the module:"
 echo "  python -m src.main"
 echo
 
-# Skip interactive prompt in CI/automation environments
-if [ -z "$CI" ] && [ -z "$GITHUB_ACTIONS" ] && [ -t 0 ]; then
+# Skip interactive prompt if not running in a terminal
+if [ -t 0 ]; then
     read -p "Press Enter to continue..."
 fi

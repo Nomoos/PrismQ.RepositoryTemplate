@@ -14,7 +14,7 @@ echo
 if [ ! -d "venv" ]; then
     echo "Virtual environment not found!"
     echo "Please run setup.sh first."
-    if [ -z "$CI" ] && [ -z "$GITHUB_ACTIONS" ] && [ -t 0 ]; then
+    if [ -t 0 ]; then
         read -p "Press Enter to continue..."
     fi
     exit 1
@@ -46,7 +46,7 @@ echo "====================================="
 echo "Code has been formatted according to PEP 8."
 echo
 
-# Skip interactive prompt in CI/automation environments
-if [ -z "$CI" ] && [ -z "$GITHUB_ACTIONS" ] && [ -t 0 ]; then
+# Skip interactive prompt if not running in a terminal
+if [ -t 0 ]; then
     read -p "Press Enter to continue..."
 fi

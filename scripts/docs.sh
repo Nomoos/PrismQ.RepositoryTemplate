@@ -14,7 +14,7 @@ echo
 if [ ! -d "venv" ]; then
     echo "Virtual environment not found!"
     echo "Please run setup.sh first."
-    if [ -z "$CI" ] && [ -z "$GITHUB_ACTIONS" ] && [ -t 0 ]; then
+    if [ -t 0 ]; then
         read -p "Press Enter to continue..."
     fi
     exit 1
@@ -63,8 +63,8 @@ echo "Documentation available at:"
 echo "  doc/build/index.html"
 echo
 
-# Only offer browser opening in interactive mode
-if [ -z "$CI" ] && [ -z "$GITHUB_ACTIONS" ] && [ -t 0 ]; then
+# Only offer browser opening if running in a terminal
+if [ -t 0 ]; then
     echo "To view in browser:"
     echo "  xdg-open doc/build/index.html"
     echo
