@@ -25,7 +25,7 @@ fi
 # Check Python installation
 if ! command -v "$PYTHON_EXEC" &> /dev/null; then
     echo "ERROR: Python executable '$PYTHON_EXEC' is not found or not working"
-    echo "Please install Python 3.10 or higher or update PYTHON_EXECUTABLE in .env"
+    echo "Please install Python 3.14 or higher or update PYTHON_EXECUTABLE in .env"
     exit 1
 fi
 

@@ -62,7 +62,7 @@ PrismQ.RepositoryTemplate/
 
 ### Prerequisites
 
-- Python 3.10 or higher
+- Python 3.14 or higher
 - Windows OS (recommended)
 - NVIDIA RTX 5090 with latest drivers
 - 64GB RAM

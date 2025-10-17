@@ -21,7 +21,7 @@ REM Check Python installation
 %PYTHON_EXEC% --version >nul 2>&1
 if errorlevel 1 (
     echo ERROR: Python executable '%PYTHON_EXEC%' is not found or not working
-    echo Please install Python 3.10 or higher or update PYTHON_EXECUTABLE in .env
+    echo Please install Python 3.14 or higher or update PYTHON_EXECUTABLE in .env
     exit /b 1
 )
 
