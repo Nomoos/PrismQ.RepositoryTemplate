@@ -25,14 +25,14 @@ class Config:
             # Find nearest parent directory with "PrismQ" in its name
             prismq_dir = self._find_prismq_directory()
             self.working_directory = str(prismq_dir)
-            env_file = prismq_dir / ".env"
+            env_file_path = prismq_dir / ".env"
         else:
             # Use the directory of the provided env_file as working directory
             env_path = Path(env_file)
             self.working_directory = str(env_path.parent.absolute())
-            env_file = env_path
+            env_file_path = env_path
 
-        self.env_file = str(env_file)
+        self.env_file = str(env_file_path)
         self._interactive = interactive
 
         # Create .env file if it doesn't exist
@@ -124,11 +124,11 @@ class Config:
             value: Environment variable value
         """
         env_path = Path(self.env_file)
-        
+
         # Read existing content
         lines = []
         key_found = False
-        
+
         if env_path.exists():
             with open(env_path, 'r', encoding='utf-8') as f:
                 for line in f:
@@ -137,11 +137,11 @@ class Config:
                         key_found = True
                     else:
                         lines.append(line)
-        
+
         # If key not found, add it
         if not key_found:
             lines.append(f"{key}={value}\n")
-        
+
         # Write back
         with open(env_path, 'w', encoding='utf-8') as f:
             f.writelines(lines)
