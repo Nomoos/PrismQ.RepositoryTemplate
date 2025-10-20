@@ -148,9 +148,32 @@ scripts\test.bat
 
 # Generate API documentation
 scripts\docs.bat
+
+# Setup database (for Model repositories)
+scripts\setup_db.bat
 ```
 
 > **Note**: Shell script equivalents (`.sh`) are available for GitHub Copilot Agent automation.
+
+### Database Setup (Model Repositories)
+
+If your repository is a Model type (contains database definitions), use the provided database setup scripts:
+
+**Windows:**
+```batch
+scripts\setup_db.bat
+```
+
+**Linux/macOS:**
+```bash
+./scripts/setup_db.sh
+```
+
+These scripts will:
+- Automatically detect the nearest PrismQ directory
+- Create or use existing `.env` configuration
+- Create the database in the working directory
+- Remember settings for future use
 
 Alternatively, activate the virtual environment and use commands directly:
 
@@ -187,13 +210,15 @@ This is a proprietary template repository. When using this template for your pro
 - ✅ UTF-8 encoding standard (`.gitattributes` and `.editorconfig`)
 - ✅ SOLID principles documentation and guidelines
 - ✅ AI-assisted coding best practices (GitHub Copilot guidelines)
-- ✅ Configuration management with environment variables
+- ✅ **Smart configuration management** with automatic PrismQ directory detection
+- ✅ **Shared .env files** across PrismQ modules in the same project
+- ✅ **Automatic working directory management** - never ask for paths again
 - ✅ **Comprehensive logging system** with module identification and environment detection
 - ✅ Test framework setup (pytest with coverage)
 - ✅ Documentation system with Sphinx (auto-generated API docs)
 - ✅ Comprehensive documentation structure
 - ✅ Issue tracking system
-- ✅ Development scripts (setup, lint, format, test, docs)
+- ✅ Development scripts (setup, lint, format, test, docs, setup_db for Models)
 - ✅ GitHub templates (issues, PRs)
 - ✅ Copilot development guidelines
 - ✅ Optimized for Windows + RTX 5090
@@ -235,9 +260,38 @@ The template includes a comprehensive logging system designed for better reporti
 
 ## 🔧 Configuration
 
-The template uses environment variables for configuration. Copy `.env.example` to `.env` and customize:
+The template uses a smart configuration system that automatically manages `.env` files:
+
+### Automatic Configuration Management
+
+- **PrismQ Directory Detection**: Automatically finds the nearest parent directory with "PrismQ" in its name
+- **Shared Configuration**: All PrismQ modules in the same directory tree share the same `.env` file
+- **Automatic Creation**: Creates `.env` file at the PrismQ project root if it doesn't exist
+- **Working Directory Storage**: Remembers your working directory in the `.env` file
+- **Interactive & Non-Interactive**: Works in both manual and CI/CD environments
+
+### Example Directory Structure
+
+```
+MyPrismQProject/              ← .env stored here
+├── .env
+├── PrismQ.Module1/
+│   └── src/
+├── PrismQ.Module2/
+│   └── src/
+└── scripts/
+```
+
+All modules share the same configuration from `MyPrismQProject/.env`.
+
+### Configuration Options
+
+Copy `.env.example` to `.env` and customize:
 
 ```bash
+# Working Directory (automatically managed)
+WORKING_DIRECTORY=
+
 # Application Settings
 APP_NAME=PrismQ.YourModule
 APP_ENV=development
@@ -268,6 +322,10 @@ The `PYTHON_EXECUTABLE` setting allows you to specify which Python interpreter t
 - `PYTHON_EXECUTABLE=C:\Python310\python.exe` (specific installation)
 
 The setup script (`scripts/setup.bat`) will automatically use this configuration when creating the virtual environment.
+
+### Advanced Configuration
+
+For detailed configuration options and advanced usage, see the [Configuration Guide](doc/CONFIGURATION.md).
 
 ### UTF-8 Encoding Standard
 

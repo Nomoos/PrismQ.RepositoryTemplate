@@ -73,6 +73,7 @@ out/
 *.db
 *.sqlite
 *.sqlite3
+*.s3db
 *.db-shm
 *.db-wal
 *.db-journal
