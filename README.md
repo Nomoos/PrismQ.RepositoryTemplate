@@ -31,18 +31,15 @@ PrismQ.RepositoryTemplate/
 │   ├── ISSUE_TEMPLATE/        # Issue templates
 │   ├── copilot-instructions.md # Copilot development guidelines
 │   └── PULL_REQUEST_TEMPLATE.md
-├── docs/                       # Sphinx API documentation (project docs should be added here)
+├── doc/                        # Sphinx API documentation
 ├── issues/                     # Issue tracking
 │   ├── new/                   # New issues
 │   ├── wip/                   # Work in progress
 │   └── done/                  # Completed issues
-├── mod/                        # Business/domain modules
-│   ├── README.md              # Module directory documentation
-│   └── ModuleExample/         # Example domain module
 ├── scripts/                    # Utility scripts
 │   ├── setup.bat / setup.sh    # Setup scripts (Windows/Linux)
 │   └── quickstart.bat / quickstart.sh  # Quick start scripts
-├── src/                        # Core Python package (infrastructure)
+├── src/                        # Core Python package
 │   ├── __init__.py            # Package initialization
 │   ├── main.py                # Main entry point
 │   ├── config.py              # Configuration management
@@ -108,29 +105,22 @@ PrismQ.RepositoryTemplate/
 
 ### Project Structure Guidelines
 
-The repository follows a clear separation of concerns:
+The repository follows a clear structure:
 
-- **src/** - Core Python package implementation (infrastructure code)
+- **src/** - Core Python package implementation
   - Configuration management
   - Logging infrastructure
   - Core utilities and common functionality
   - Package initialization
+  - Main entry point and business logic
 
-- **mod/** - Business/domain modules (higher-level modules)
-  - Domain-specific implementations
-  - Business logic modules
-  - Application components
-  - Use case orchestration
+- **tests/** - Test suite mirroring `src/` structure
 
-- **tests/** - Mirror both `src/` and `mod/` structure in your tests
+- **doc/** - Detailed documentation for users and developers
 
-- **docs/** - Add detailed documentation for users and developers
-
-- **scripts/** - Add utility scripts for common tasks
+- **scripts/** - Utility scripts for common tasks
 
 - **issues/** - Track issues and roadmap items
-
-This separation makes it clear what is core functionality (src/) versus higher-level business modules (mod/).
 
 ### Development Workflow
 

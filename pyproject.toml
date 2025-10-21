@@ -35,8 +35,6 @@ logging = [
 
 [tool.setuptools]
 # Only include src/ in the package (core infrastructure)
-# The mod/ directory contains business modules that users implement
-# and should be managed separately in their projects
 packages = ["src"]
 
 [tool.setuptools.package-data]
@@ -87,12 +85,10 @@ convention = "google"
 
 [tool.ruff.lint.per-file-ignores]
 "tests/*" = ["S101", "D", "ANN"]  # Allow assert, no docstrings required in tests
-"mod/*" = ["D"]  # Business modules may have different documentation requirements
 
 [tool.mypy]
 # PEP 484, 526, 544, 561 compliance
-# Note: Type checking applies to src/ (core package). 
-# Business modules in mod/ are checked if imported.
+# Note: Type checking applies to src/ (core package).
 python_version = "3.14"
 warn_return_any = true
 warn_unused_configs = true
