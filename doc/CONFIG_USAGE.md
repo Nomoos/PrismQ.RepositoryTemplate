@@ -198,6 +198,7 @@ config = Config()
 You can extend the `Config` class for module-specific configuration:
 
 ```python
+from pathlib import Path
 from src.config import Config
 
 class MyModuleConfig(Config):
@@ -261,23 +262,27 @@ Ensure your `.env` file has the correct format (`KEY=value`, no spaces around `=
 
 If you were previously using manual `.env` loading:
 
-**Before:**
+**Before (simplified example - not production code):**
 ```python
-# Old manual loading
+# Old manual loading (simplified - lacks error handling)
+# This is a basic example and should not be used in production
 with open('.env', 'r') as f:
     for line in f:
-        if line.strip() and not line.startswith('#'):
+        line = line.strip()
+        if line and not line.startswith('#') and '=' in line:
             key, value = line.split('=', 1)
             os.environ[key] = value
 ```
 
 **After:**
 ```python
-# New config system
+# New config system with robust error handling
 from src.config import Config
 config = Config()
-# .env is automatically loaded via python-dotenv
+# .env is automatically loaded via python-dotenv with proper error handling
 ```
+
+**Note**: The manual example above is simplified and lacks proper error handling for edge cases. The new `python-dotenv` based system handles these cases correctly.
 
 ## Reference
 
