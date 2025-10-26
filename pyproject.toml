@@ -7,7 +7,7 @@ name = "prismq-module-template"
 version = "0.1.0"
 description = "PrismQ module template for AI-powered content generation"
 readme = "README.md"
-requires-python = ">=3.12"
+requires-python = ">=3.14"
 license = {text = "Proprietary"}
 authors = [
     {name = "PrismQ", email = "dev@prismq.com"}
