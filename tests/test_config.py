@@ -97,14 +97,14 @@ def test_working_directory_from_cwd():
 
 
 def test_working_directory_finds_prismq_parent():
-    """Test that working directory finds nearest parent with PrismQ in name."""
+    """Test that working directory finds topmost parent with exact name PrismQ."""
     # Save original cwd
     original_cwd = os.getcwd()
 
     try:
         with tempfile.TemporaryDirectory() as base_temp:
-            # Create a temporary directory structure with PrismQ in the name
-            prismq_dir = Path(base_temp) / "MyPrismQProject"
+            # Create a temporary directory structure with exact name "PrismQ"
+            prismq_dir = Path(base_temp) / "PrismQ"
             subdir = prismq_dir / "subdirectory" / "nested"
             subdir.mkdir(parents=True, exist_ok=True)
 
@@ -114,10 +114,11 @@ def test_working_directory_finds_prismq_parent():
             # Create config without specifying env_file
             config = Config(interactive=False)
 
-            # Check that working directory is the PrismQ parent directory
-            assert config.working_directory == str(prismq_dir)
-            assert config.env_file == str(prismq_dir / ".env")
-            assert (prismq_dir / ".env").exists()
+            # Check that working directory is PrismQ_WD (sibling to PrismQ)
+            expected_wd = Path(base_temp) / "PrismQ_WD"
+            assert config.working_directory == str(expected_wd)
+            assert config.env_file == str(expected_wd / ".env")
+            assert (expected_wd / ".env").exists()
     finally:
         # Restore original cwd
         os.chdir(original_cwd)
@@ -170,3 +171,51 @@ def test_existing_env_values_preserved():
         with open(env_path, 'r') as f:
             content = f.read()
             assert "WORKING_DIRECTORY=" in content
+
+
+def test_topmost_prismq_directory():
+    """Test that the topmost PrismQ directory is found, not just the first one."""
+    # Save original cwd
+    original_cwd = os.getcwd()
+
+    try:
+        with tempfile.TemporaryDirectory() as base_temp:
+            # Create nested PrismQ directories
+            outer_prismq = Path(base_temp) / "PrismQ"
+            inner_prismq = outer_prismq / "modules" / "PrismQ" / "submodule"
+            inner_prismq.mkdir(parents=True, exist_ok=True)
+
+            # Change to innermost directory
+            os.chdir(inner_prismq)
+
+            # Create config without specifying env_file
+            config = Config(interactive=False)
+
+            # Check that working directory is from the topmost (outer) PrismQ
+            expected_wd = Path(base_temp) / "PrismQ_WD"
+            assert config.working_directory == str(expected_wd)
+    finally:
+        # Restore original cwd
+        os.chdir(original_cwd)
+
+
+def test_get_or_prompt_non_interactive():
+    """Test _get_or_prompt in non-interactive mode."""
+    with tempfile.TemporaryDirectory() as tmpdir:
+        env_path = Path(tmpdir) / ".env"
+
+        # Create config in non-interactive mode
+        config = Config(str(env_path), interactive=False)
+
+        # Test getting a value that doesn't exist
+        value = config._get_or_prompt("NONEXISTENT_KEY", "Some description", "default_value")
+        assert value == "default_value"
+
+        # Test getting a value that exists
+        os.environ["TEST_KEY"] = "test_value"
+        value = config._get_or_prompt("TEST_KEY", "Some description", "default_value")
+        assert value == "test_value"
+
+        # Cleanup
+        del os.environ["TEST_KEY"]
+
