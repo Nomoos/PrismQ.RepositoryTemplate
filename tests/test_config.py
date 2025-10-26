@@ -4,6 +4,7 @@ import os
 import tempfile
 from pathlib import Path
 
+from dotenv import load_dotenv, set_key
 
 from src.config import Config
 
@@ -218,4 +219,58 @@ def test_get_or_prompt_non_interactive():
 
         # Cleanup
         del os.environ["TEST_KEY"]
+
+
+def test_env_write_test_value():
+    """Test writing a test value to .env file."""
+    with tempfile.TemporaryDirectory() as tmpdir:
+        env_path = Path(tmpdir) / ".env"
+        
+        # Create config (this creates the .env file)
+        config = Config(str(env_path), interactive=False)
+        
+        # Write a test value to .env
+        test_key = "TEST_VALUE"
+        test_value = "test_data_12345"
+        set_key(env_path, test_key, test_value)
+        
+        # Verify the value was written to the file
+        with open(env_path, 'r') as f:
+            content = f.read()
+            # set_key adds quotes around values, so check for the key in the content
+            assert test_key in content
+            assert test_value in content
+        
+        # Verify we can read it back using os.getenv after reloading
+        load_dotenv(env_path, override=True)
+        assert os.getenv(test_key) == test_value
+        
+        # Cleanup
+        if test_key in os.environ:
+            del os.environ[test_key]
+
+
+def test_working_directory_creation():
+    """Test that working directory is physically created."""
+    with tempfile.TemporaryDirectory() as base_tmpdir:
+        # Create a path for working directory that doesn't exist yet
+        working_dir = Path(base_tmpdir) / "test_working_dir"
+        env_path = working_dir / ".env"
+        
+        # Ensure the working directory doesn't exist before creating config
+        assert not working_dir.exists()
+        
+        # Create config - this should create the working directory
+        config = Config(str(env_path), interactive=False)
+        
+        # Verify the working directory was created
+        assert working_dir.exists()
+        assert working_dir.is_dir()
+        
+        # Verify the .env file is in the working directory
+        assert env_path.exists()
+        assert env_path.is_file()
+        
+        # Verify config.working_directory points to the created directory
+        assert config.working_directory == str(working_dir.absolute())
 
