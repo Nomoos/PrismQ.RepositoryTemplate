@@ -4,6 +4,7 @@ import os
 import tempfile
 from pathlib import Path
 
+from dotenv import load_dotenv, set_key
 
 from src.config import Config
 
@@ -222,8 +223,6 @@ def test_get_or_prompt_non_interactive():
 
 def test_env_write_test_value():
     """Test writing a test value to .env file."""
-    from dotenv import set_key
-    
     with tempfile.TemporaryDirectory() as tmpdir:
         env_path = Path(tmpdir) / ".env"
         
@@ -243,7 +242,6 @@ def test_env_write_test_value():
             assert test_value in content
         
         # Verify we can read it back using os.getenv after reloading
-        from dotenv import load_dotenv
         load_dotenv(env_path, override=True)
         assert os.getenv(test_key) == test_value
         
