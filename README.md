@@ -85,6 +85,8 @@ PrismQ.RepositoryTemplate/
    REM Edit .env with your configuration
    ```
 
+   The configuration system automatically manages `.env` files and working directories. See [Configuration System Usage](doc/CONFIG_USAGE.md) for details.
+
 4. Run the module:
    ```batch
    scripts\quickstart.bat
@@ -189,6 +191,29 @@ This is a proprietary template repository. When using this template for your pro
 2. Define coding standards, testing requirements, and review processes
 3. Update this section with a link to your CONTRIBUTING.md file
 
+## ⚙️ Configuration System
+
+The template includes a robust configuration system with automatic `.env` loading and working directory management:
+
+- **Automatic .env Loading**: Uses `python-dotenv` for reliable environment variable loading
+- **Smart Working Directory**: Automatically detects the topmost `PrismQ` directory and creates a `PrismQ_WD` sibling for shared configuration
+- **Interactive Prompting**: Can prompt for missing configuration values in interactive mode
+- **Built-in Configuration**: Pre-configured support for common settings (app name, debug mode, log level, paths, etc.)
+
+**Quick Example:**
+```python
+from src.config import Config
+
+# Initialize configuration (auto-loads .env)
+config = Config()
+
+print(f"Working directory: {config.working_directory}")
+print(f"App name: {config.app_name}")
+print(f"Debug mode: {config.debug}")
+```
+
+For detailed documentation, see [Configuration System Usage](doc/CONFIG_USAGE.md).
+
 ## 📋 Features
 
 ### Included in Template
@@ -200,9 +225,11 @@ This is a proprietary template repository. When using this template for your pro
 - ✅ UTF-8 encoding standard (`.gitattributes` and `.editorconfig`)
 - ✅ SOLID principles documentation and guidelines
 - ✅ AI-assisted coding best practices (GitHub Copilot guidelines)
-- ✅ **Smart configuration management** with automatic PrismQ directory detection
-- ✅ **Shared .env files** across PrismQ modules in the same project
-- ✅ **Automatic working directory management** - never ask for paths again
+- ✅ **Robust configuration system** with `python-dotenv` integration
+- ✅ **Smart working directory detection** - finds topmost PrismQ directory
+- ✅ **Shared .env files** across PrismQ modules via `PrismQ_WD` directory
+- ✅ **Interactive prompting** for missing configuration values
+- ✅ **Automatic .env management** - no manual file handling needed
 - ✅ **Comprehensive logging system** with module identification and environment detection
 - ✅ Test framework setup (pytest with coverage)
 - ✅ Documentation system with Sphinx (auto-generated API docs)
