@@ -5,27 +5,35 @@ import sys
 from pathlib import Path
 from typing import Optional
 
+from dotenv import load_dotenv, set_key
+
 
 class Config:
     """Configuration class for the PrismQ module.
 
-    Automatically detects the nearest parent directory with 'PrismQ' in its name
-    and stores configuration in a .env file at that location.
+    Automatically detects the topmost parent directory with exact name 'PrismQ'
+    and stores configuration in a .env file in a PrismQ_WD sibling directory.
     """
 
     def __init__(self, env_file: Optional[str] = None, interactive: bool = True) -> None:
         """Initialize configuration from environment variables and .env file.
 
         Args:
-            env_file: Path to .env file (default: .env in nearest PrismQ directory)
+            env_file: Path to .env file (default: .env in topmost PrismQ directory)
             interactive: Whether to prompt for missing values (default: True)
         """
         # Determine working directory and .env file path
         if env_file is None:
-            # Find nearest parent directory with "PrismQ" in its name
+            # Find topmost parent directory with exact name "PrismQ"
             prismq_dir = self._find_prismq_directory()
-            self.working_directory = str(prismq_dir)
-            env_file_path = prismq_dir / ".env"
+            # Only add _WD suffix if we found a PrismQ directory
+            if prismq_dir.name == "PrismQ":
+                working_dir = prismq_dir.parent / "PrismQ_WD"
+            else:
+                # If no PrismQ found, use current directory as-is
+                working_dir = prismq_dir
+            self.working_directory = str(working_dir)
+            env_file_path = working_dir / ".env"
         else:
             # Use the directory of the provided env_file as working directory
             env_path = Path(env_file)
@@ -40,7 +48,7 @@ class Config:
             self._create_env_file()
 
         # Load environment variables from .env file
-        self._load_dotenv()
+        load_dotenv(self.env_file)
 
         # Store/update working directory in .env
         self._ensure_working_directory()
@@ -63,20 +71,26 @@ class Config:
         self._create_directories()
 
     def _find_prismq_directory(self) -> Path:
-        """Find the nearest parent directory with 'PrismQ' in its name.
+        """Find the topmost/root parent directory with exact name 'PrismQ'.
+
+        This searches upward from the current directory and returns the highest-level
+        directory with the exact name 'PrismQ'. This ensures that .env files are
+        centralized at the root PrismQ directory, not in subdirectories or modules.
 
         Returns:
-            Path to the nearest PrismQ directory, or current directory if none found
+            Path to the topmost PrismQ directory, or current directory if none found
         """
         current_path = Path.cwd().absolute()
+        prismq_dir = None
 
-        # Check current directory and all parents
+        # Check current directory and all parents, continuing to find the topmost match
         for path in [current_path] + list(current_path.parents):
-            if "PrismQ" in path.name:
-                return path
+            if path.name == "PrismQ":
+                prismq_dir = path
+                # Continue searching - don't break early
 
-        # If no PrismQ directory found, use current directory as fallback
-        return current_path
+        # Return the topmost PrismQ directory found, or current directory as fallback
+        return prismq_dir if prismq_dir else current_path
 
     def _create_env_file(self) -> None:
         """Create a new .env file with default values."""
@@ -84,67 +98,71 @@ class Config:
         env_path.parent.mkdir(parents=True, exist_ok=True)
         env_path.touch()
 
-    def _load_dotenv(self) -> None:
-        """Load environment variables from .env file."""
-        try:
-            with open(self.env_file, 'r', encoding='utf-8') as f:
-                for line in f:
-                    line = line.strip()
-                    # Skip empty lines and comments
-                    if not line or line.startswith('#'):
-                        continue
-
-                    # Parse key=value pairs
-                    if '=' in line:
-                        key, value = line.split('=', 1)
-                        key = key.strip()
-                        value = value.strip()
-                        # Only set if not already in environment
-                        if key not in os.environ:
-                            os.environ[key] = value
-        except Exception as e:
-            if self._interactive:
-                print(f"[WARNING] Failed to load .env file: {e}", file=sys.stderr)
-
     def _ensure_working_directory(self) -> None:
         """Ensure working directory is stored in .env file."""
         current_wd = os.getenv("WORKING_DIRECTORY")
 
         if current_wd != self.working_directory:
             # Update or add working directory to .env
-            self._set_env_value("WORKING_DIRECTORY", self.working_directory)
+            set_key(self.env_file, "WORKING_DIRECTORY", self.working_directory)
             # Reload to pick up the change
-            os.environ["WORKING_DIRECTORY"] = self.working_directory
+            load_dotenv(self.env_file, override=True)
 
-    def _set_env_value(self, key: str, value: str) -> None:
-        """Set or update a value in the .env file.
+    def _prompt_for_value(self, key: str, description: str, default: str = "") -> str:
+        """Prompt user for a configuration value.
 
         Args:
             key: Environment variable key
-            value: Environment variable value
+            description: Human-readable description of the value
+            default: Default value to suggest
+
+        Returns:
+            The value entered by the user or the default
         """
-        env_path = Path(self.env_file)
+        if not self._interactive:
+            return default
 
-        # Read existing content
-        lines = []
-        key_found = False
+        prompt = f"{description}"
+        if default:
+            prompt += f" (default: {default})"
+        prompt += ": "
 
-        if env_path.exists():
-            with open(env_path, 'r', encoding='utf-8') as f:
-                for line in f:
-                    if line.strip().startswith(f"{key}="):
-                        lines.append(f"{key}={value}\n")
-                        key_found = True
-                    else:
-                        lines.append(line)
+        try:
+            value = input(prompt).strip()
+            return value if value else default
+        except (EOFError, KeyboardInterrupt):
+            # In non-interactive environments, return default
+            return default
 
-        # If key not found, add it
-        if not key_found:
-            lines.append(f"{key}={value}\n")
+    def _get_or_prompt(
+        self, key: str, description: str, default: str = "", required: bool = False
+    ) -> str:
+        """Get value from environment or prompt user if missing.
 
-        # Write back
-        with open(env_path, 'w', encoding='utf-8') as f:
-            f.writelines(lines)
+        Args:
+            key: Environment variable key
+            description: Human-readable description of the value
+            default: Default value
+            required: Whether this value is required
+
+        Returns:
+            The configuration value
+        """
+        value = os.getenv(key)
+
+        if value is None or value == "":
+            # Value is missing, prompt user if interactive
+            if self._interactive and required:
+                value = self._prompt_for_value(key, description, default)
+                # Save the value to .env file
+                if value:
+                    set_key(self.env_file, key, value)
+                    # Reload to pick up the change
+                    load_dotenv(self.env_file, override=True)
+            else:
+                value = default
+
+        return value
 
     def _create_directories(self) -> None:
         """Create necessary directories if they don't exist."""
