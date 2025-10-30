@@ -21,7 +21,7 @@ wheels/
 *.egg
 
 # Documentation builds
-doc/build/
+_meta/docs/build/
 
 # Virtual environments
 venv/

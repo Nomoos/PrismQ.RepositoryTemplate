@@ -46,13 +46,13 @@ fi
 
 # Clean previous builds
 echo "Cleaning previous documentation builds..."
-if [ -d "doc/build" ]; then
-    rm -rf doc/build
+if [ -d "_meta/docs/build" ]; then
+    rm -rf _meta/docs/build
 fi
 
 # Build HTML documentation
 echo "Building HTML documentation..."
-sphinx-build -b html doc/source doc/build
+sphinx-build -b html _meta/docs/source _meta/docs/build
 
 echo
 echo "====================================="
@@ -60,25 +60,25 @@ echo "Documentation Build Complete!"
 echo "====================================="
 echo
 echo "Documentation available at:"
-echo "  doc/build/index.html"
+echo "  _meta/docs/build/index.html"
 echo
 
 # Only offer browser opening if running in a terminal
 if [ -t 0 ]; then
     echo "To view in browser:"
-    echo "  xdg-open doc/build/index.html"
+    echo "  xdg-open _meta/docs/build/index.html"
     echo
     
     # Optional: Open in browser automatically
     read -p "Open documentation in browser? (y/n): " OPEN_BROWSER
     if [[ "$OPEN_BROWSER" =~ ^[Yy]$ ]]; then
         if command -v xdg-open &> /dev/null; then
-            xdg-open doc/build/index.html
+            xdg-open _meta/docs/build/index.html
         elif command -v open &> /dev/null; then
-            open doc/build/index.html
+            open _meta/docs/build/index.html
         else
             echo "Could not find a command to open the browser."
-            echo "Please open doc/build/index.html manually."
+            echo "Please open _meta/docs/build/index.html manually."
         fi
     fi
     

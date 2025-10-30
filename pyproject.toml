@@ -41,7 +41,7 @@ packages = ["src"]
 src = ["py.typed"]
 
 [tool.pytest.ini_options]
-testpaths = ["tests"]
+testpaths = ["_meta/tests"]
 python_files = "test_*.py"
 python_classes = "Test*"
 python_functions = "test_*"

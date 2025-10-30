@@ -34,13 +34,13 @@ if errorlevel 1 (
 
 REM Clean previous builds
 echo Cleaning previous documentation builds...
-if exist "doc\build" (
-    rmdir /s /q doc\build
+if exist "_meta\docs\build" (
+    rmdir /s /q _meta\docs\build
 )
 
 REM Build HTML documentation
 echo Building HTML documentation...
-sphinx-build -b html doc\source doc\build
+sphinx-build -b html _meta\docs\source _meta\docs\build
 
 if errorlevel 1 (
     echo.
@@ -58,16 +58,16 @@ echo Documentation Build Complete!
 echo =====================================
 echo.
 echo Documentation available at:
-echo   doc\build\index.html
+echo   _meta\docs\build\index.html
 echo.
 echo To view in browser:
-echo   start doc\build\index.html
+echo   start _meta\docs\build\index.html
 echo.
 
 REM Optional: Open in browser automatically
 set /p OPEN_BROWSER="Open documentation in browser? (y/n): "
 if /i "%OPEN_BROWSER%"=="y" (
-    start doc\build\index.html
+    start _meta\docs\build\index.html
 )
 
 pause
