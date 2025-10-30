@@ -258,26 +258,51 @@ The template includes a comprehensive logging system designed for better reporti
 
 ### Key Logging Features
 
+- **Complete Code Location Tracking**: Logs include filename, function name, and line number for precise orientation
 - **Module Identification**: Automatically logs module name, version, and location at startup
 - **Environment Detection**: Logs OS, Python version, architecture, and hardware information
 - **Hardware Awareness**: Optional detailed CPU, RAM, and GPU information (with psutil)
 - **Dual Output**: Supports both console and file logging simultaneously
-- **Structured Format**: Includes timestamp, module name, log level, file location, and line number
+- **Structured Format**: Includes timestamp, module name, log level, file location, function name, and line number
 - **Flexible Configuration**: Control log level and file output via environment variables
 - **Production Ready**: Easy to switch between development and production logging modes
+- **AI-Friendly**: Enhanced format helps GitHub Copilot understand code flow and context
+
+### Log Format
+
+All logs use a standardized format for better orientation:
+
+```
+%(asctime)s - %(name)s - %(levelname)s - [%(filename)s:%(funcName)s:%(lineno)d] - %(message)s
+```
+
+This provides complete context: **when**, **where** (file and function), **what level**, and **what happened**.
 
 ### Example Output
 
 ```
-2025-10-16 16:08:11 - PrismQ.MyModule - INFO - [logging_config.py:109] - Module Information:
-2025-10-16 16:08:11 - PrismQ.MyModule - INFO - [logging_config.py:110] -   Name: PrismQ.MyModule
-2025-10-16 16:08:11 - PrismQ.MyModule - INFO - [logging_config.py:111] -   Version: 1.0.0
-2025-10-16 16:08:11 - PrismQ.MyModule - INFO - [logging_config.py:116] -   Operating System: Windows 11
-2025-10-16 16:08:11 - PrismQ.MyModule - INFO - [logging_config.py:119] -   Processor: AMD Ryzen 9 7950X
-2025-10-16 16:08:11 - PrismQ.MyModule - INFO - [logging_config.py:148] -   CPU: 16 physical cores, 32 logical cores
-2025-10-16 16:08:11 - PrismQ.MyModule - INFO - [logging_config.py:155] -   RAM: 64.00 GB total
-2025-10-16 16:08:11 - PrismQ.MyModule - INFO - [logging_config.py:171] -   GPU: NVIDIA GeForce RTX 5090, 32768 MiB
+2025-10-30 20:46:21 - PrismQ.MyModule - INFO - [logging_config.py:log_module_startup:109] - Module Information:
+2025-10-30 20:46:21 - PrismQ.MyModule - INFO - [logging_config.py:log_module_startup:110] -   Name: PrismQ.MyModule
+2025-10-30 20:46:21 - PrismQ.MyModule - INFO - [logging_config.py:log_module_startup:111] -   Version: 1.0.0
+2025-10-30 20:46:21 - PrismQ.MyModule - INFO - [main.py:process_data:42] - Processing started
+2025-10-30 20:46:22 - PrismQ.MyModule - WARNING - [utils.py:validate_input:15] - Invalid input detected
 ```
+
+Notice how each log includes:
+- **Timestamp**: When it happened
+- **Module**: Which PrismQ module
+- **Level**: INFO, WARNING, ERROR, etc.
+- **Location**: `[file:function:line]` for precise code location
+- **Message**: What happened
+
+### For Detailed Logging Guidelines
+
+See the comprehensive [Logging Best Practices Guide](_meta/docs/LOGGING_BEST_PRACTICES.md) for:
+- Proper log level usage (DEBUG, INFO, WARNING, ERROR, CRITICAL)
+- How to include context in log messages
+- Exception logging best practices
+- Examples and patterns
+- How logging helps AI assistants like GitHub Copilot
 
 ## 🔧 Configuration
 

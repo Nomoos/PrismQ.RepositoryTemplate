@@ -75,10 +75,13 @@ class ModuleLogger:
         # Remove existing handlers to avoid duplicates
         logger.handlers.clear()
 
-        # Create formatter with detailed information
+        # Create formatter with detailed information including function name
+        # Format: timestamp - module_name - level - [file:function:line] - message
+        # This provides complete context for orientation in logs
         formatter = logging.Formatter(
             fmt=(
-                "%(asctime)s - %(name)s - %(levelname)s - [%(filename)s:%(lineno)d] - %(message)s"
+                "%(asctime)s - %(name)s - %(levelname)s - "
+                "[%(filename)s:%(funcName)s:%(lineno)d] - %(message)s"
             ),
             datefmt="%Y-%m-%d %H:%M:%S",
         )
@@ -228,11 +231,17 @@ def setup_basic_logging(log_level: str = "INFO") -> None:
     This is a simpler alternative to get_module_logger() for cases
     where detailed module information is not needed.
 
+    Note: For better log orientation, consider using get_module_logger()
+    which includes function names and more detailed context.
+
     Args:
         log_level: Logging level (default: 'INFO')
     """
     logging.basicConfig(
         level=getattr(logging, log_level.upper(), logging.INFO),
-        format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+        format=(
+            "%(asctime)s - %(name)s - %(levelname)s - "
+            "[%(filename)s:%(funcName)s:%(lineno)d] - %(message)s"
+        ),
         datefmt="%Y-%m-%d %H:%M:%S",
     )

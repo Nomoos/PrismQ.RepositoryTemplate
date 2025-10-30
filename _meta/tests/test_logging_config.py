@@ -139,7 +139,7 @@ def test_multiple_loggers_independent():
 
 
 def test_logger_format_includes_details(caplog):
-    """Test that logger format includes filename and line number."""
+    """Test that logger format includes filename, function name, and line number."""
     logger = get_module_logger("TestModule", log_startup=False)
 
     with caplog.at_level(logging.INFO):
@@ -149,8 +149,11 @@ def test_logger_format_includes_details(caplog):
         assert len(caplog.records) > 0
         record = caplog.records[-1]
         assert record.filename is not None
+        assert record.funcName is not None
         assert record.lineno is not None
         assert "Test message with details" in caplog.text
+        # Verify function name appears in log output
+        assert "test_logger_format_includes_details" in caplog.text
 
 
 def test_logger_handles_exceptions(caplog):
@@ -166,3 +169,25 @@ def test_logger_handles_exceptions(caplog):
         assert "An error occurred" in caplog.text
         assert "ValueError" in caplog.text
         assert "Test exception" in caplog.text
+
+
+def test_logger_format_pattern(caplog):
+    """Test that logger format matches the expected pattern with function names."""
+    logger = get_module_logger("TestModule", log_startup=False)
+
+    with caplog.at_level(logging.INFO):
+        logger.info("Format test message")
+
+        # The format should be:
+        # timestamp - module - level - [file:function:line] - message
+        log_output = caplog.text
+        
+        # Check for key components in the format
+        assert "TestModule" in log_output  # module name
+        assert "INFO" in log_output  # log level
+        assert "test_logging_config.py" in log_output  # filename
+        assert "test_logger_format_pattern" in log_output  # function name
+        assert "Format test message" in log_output  # message
+        
+        # Check that the format includes brackets around location
+        assert "[test_logging_config.py:test_logger_format_pattern:" in log_output
