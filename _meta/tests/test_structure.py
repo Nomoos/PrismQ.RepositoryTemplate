@@ -52,17 +52,43 @@ def test_pyproject_toml_packages_config():
     )
 
 
+def test_meta_directory_exists():
+    """Test that _meta/ directory exists for metadata and supporting files."""
+    meta_dir = Path("_meta")
+    assert meta_dir.exists(), "_meta/ directory should exist"
+    assert meta_dir.is_dir(), "_meta/ should be a directory"
+
+
+def test_meta_structure():
+    """Test that _meta/ has proper subdirectory structure."""
+    meta_dir = Path("_meta")
+    
+    # Core _meta subdirectories
+    meta_subdirs = [
+        "docs",
+        "tests",
+        "issues",
+        "_scripts",
+        "research",
+    ]
+    
+    for subdir in meta_subdirs:
+        subdir_path = meta_dir / subdir
+        assert subdir_path.exists(), f"_meta/{subdir}/ should exist"
+        assert subdir_path.is_dir(), f"_meta/{subdir}/ should be a directory"
+
+
 def test_doc_directory_exists():
-    """Test that doc/ directory exists for documentation."""
-    doc_dir = Path("doc")
-    assert doc_dir.exists(), "doc/ directory should exist"
-    assert doc_dir.is_dir(), "doc/ should be a directory"
+    """Test that _meta/docs/ directory exists for documentation."""
+    doc_dir = Path("_meta/docs")
+    assert doc_dir.exists(), "_meta/docs/ directory should exist"
+    assert doc_dir.is_dir(), "_meta/docs/ should be a directory"
 
 
 def test_doc_sphinx_structure():
-    """Test that doc/ has proper Sphinx structure."""
-    doc_source = Path("doc/source")
-    assert doc_source.exists(), "doc/source/ should exist"
+    """Test that _meta/docs/ has proper Sphinx structure."""
+    doc_source = Path("_meta/docs/source")
+    assert doc_source.exists(), "_meta/docs/source/ should exist"
 
     # Core Sphinx files
     sphinx_files = [
@@ -72,22 +98,22 @@ def test_doc_sphinx_structure():
 
     for filename in sphinx_files:
         file_path = doc_source / filename
-        assert file_path.exists(), f"doc/source/{filename} should exist"
+        assert file_path.exists(), f"_meta/docs/source/{filename} should exist"
 
     # Sphinx directories
-    assert (doc_source / "_static").exists(), "doc/source/_static/ should exist"
-    assert (doc_source / "_templates").exists(), "doc/source/_templates/ should exist"
+    assert (doc_source / "_static").exists(), "_meta/docs/source/_static/ should exist"
+    assert (doc_source / "_templates").exists(), "_meta/docs/source/_templates/ should exist"
 
 
 def test_doc_conf_has_autodoc_path():
-    """Test that doc/source/conf.py configures path for autodoc."""
-    conf_py = Path("doc/source/conf.py")
+    """Test that _meta/docs/source/conf.py configures path for autodoc."""
+    conf_py = Path("_meta/docs/source/conf.py")
     content = conf_py.read_text(encoding="utf-8")
 
     # Should configure sys.path for autodoc
     assert "sys.path.insert" in content, "conf.py should configure sys.path for autodoc"
-    assert "../../src" in content or "'../../src'" in content, (
-        "conf.py should add ../../src to path for autodoc"
+    assert "../../../src" in content or "'../../../src'" in content, (
+        "conf.py should add ../../../src to path for autodoc"
     )
 
     # Should have autodoc extension

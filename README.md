@@ -31,22 +31,25 @@ PrismQ.RepositoryTemplate/
 │   ├── ISSUE_TEMPLATE/        # Issue templates
 │   ├── copilot-instructions.md # Copilot development guidelines
 │   └── PULL_REQUEST_TEMPLATE.md
-├── doc/                        # Sphinx API documentation
-├── issues/                     # Issue tracking
-│   ├── new/                   # New issues
-│   ├── wip/                   # Work in progress
-│   └── done/                  # Completed issues
-├── scripts/                    # Utility scripts
-│   ├── setup.bat / setup.sh    # Setup scripts (Windows/Linux)
-│   └── quickstart.bat / quickstart.sh  # Quick start scripts
+├── _meta/                      # Metadata and supporting files
+│   ├── docs/                  # Sphinx API documentation
+│   │   ├── CONFIGURATION.md   # Configuration guide
+│   │   ├── CONFIG_USAGE.md    # Configuration usage
+│   │   └── source/            # Sphinx source files
+│   ├── tests/                 # Test suite
+│   ├── issues/                # Issue tracking
+│   │   ├── new/              # New issues
+│   │   ├── wip/              # Work in progress
+│   │   └── done/             # Completed issues
+│   ├── _scripts/              # Utility scripts
+│   │   ├── setup.bat / setup.sh    # Setup scripts (Windows/Linux)
+│   │   └── quickstart.bat / quickstart.sh  # Quick start scripts
+│   └── research/              # Research materials
 ├── src/                        # Core Python package
 │   ├── __init__.py            # Package initialization
 │   ├── main.py                # Main entry point
 │   ├── config.py              # Configuration management
 │   └── logging_config.py      # Logging infrastructure
-├── tests/                      # Test suite
-│   ├── __init__.py            # Test package initialization
-│   └── test_*.py              # Test files
 ├── .env.example               # Environment variables template
 ├── .gitignore                 # Git ignore rules
 ├── LICENSE                    # Proprietary license
@@ -76,7 +79,7 @@ PrismQ.RepositoryTemplate/
 
 2. Run setup script:
    ```batch
-   scripts\setup.bat
+   _meta\_scripts\setup.bat
    ```
 
 3. Configure environment:
@@ -89,10 +92,10 @@ PrismQ.RepositoryTemplate/
 
 4. Run the module:
    ```batch
-   scripts\quickstart.bat
+   _meta\_scripts\quickstart.bat
    ```
 
-> **Note for GitHub Copilot Agents**: Linux shell scripts (`.sh`) are available in the `scripts/` directory for automated agent usage.
+> **Note for GitHub Copilot Agents**: Linux shell scripts (`.sh`) are available in the `_meta/_scripts/` directory for automated agent usage.
 
 ## 🛠️ Development
 
@@ -107,7 +110,7 @@ PrismQ.RepositoryTemplate/
 
 ### Project Structure Guidelines
 
-The repository follows a clear structure:
+The repository follows a clean, organized structure:
 
 - **src/** - Core Python package implementation
   - Configuration management
@@ -116,13 +119,14 @@ The repository follows a clear structure:
   - Package initialization
   - Main entry point and business logic
 
-- **tests/** - Test suite mirroring `src/` structure
+- **_meta/** - Supporting files and project metadata
+  - **_meta/docs/** - Detailed documentation for users and developers
+  - **_meta/tests/** - Test suite mirroring `src/` structure
+  - **_meta/_scripts/** - Utility scripts for common tasks
+  - **_meta/issues/** - Track issues and roadmap items
+  - **_meta/research/** - Research materials and experiments
 
-- **doc/** - Detailed documentation for users and developers
-
-- **scripts/** - Utility scripts for common tasks
-
-- **issues/** - Track issues and roadmap items
+This structure keeps the root directory clean and focused on the core package while organizing all supporting materials in a centralized `_meta/` directory, following PrismQ repository conventions.
 
 ### Development Workflow
 
@@ -130,19 +134,19 @@ The template includes utility scripts for common development tasks:
 
 ```batch
 # Format code (PEP 8 compliance)
-scripts\format.bat
+_meta\_scripts\format.bat
 
 # Run linting and type checking
-scripts\lint.bat
+_meta\_scripts\lint.bat
 
 # Run tests with coverage
-scripts\test.bat
+_meta\_scripts\test.bat
 
 # Generate API documentation
-scripts\docs.bat
+_meta\_scripts\docs.bat
 
 # Setup database (for Model repositories)
-scripts\setup_db.bat
+_meta\_scripts\setup_db.bat
 ```
 
 > **Note**: Shell script equivalents (`.sh`) are available for GitHub Copilot Agent automation.
@@ -153,12 +157,12 @@ If your repository is a Model type (contains database definitions), use the prov
 
 **Windows:**
 ```batch
-scripts\setup_db.bat
+_meta\_scripts\setup_db.bat
 ```
 
 **Linux/macOS:**
 ```bash
-./scripts/setup_db.sh
+./_meta/_scripts/setup_db.sh
 ```
 
 These scripts will:
