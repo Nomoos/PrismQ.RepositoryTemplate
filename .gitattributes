@@ -1,48 +1,50 @@
-# Set UTF-8 as the standard encoding for text files
-# This ensures cross-platform compatibility across Git, GitHub, and modern web applications
+# PrismQ.RepositoryTemplate - Git Attributes
+# Primary Platform: Windows
 
-# Auto detect text files and perform LF normalization
-* text=auto eol=lf
+# Auto detect text files and normalize line endings to LF in repository
+# but use CRLF in working directory on Windows
+* text=auto
 
-# Explicitly declare text files with UTF-8 encoding
-*.py text eol=lf encoding=UTF-8
-*.md text eol=lf encoding=UTF-8
-*.txt text eol=lf encoding=UTF-8
-*.json text eol=lf encoding=UTF-8
-*.yaml text eol=lf encoding=UTF-8
-*.yml text eol=lf encoding=UTF-8
-*.toml text eol=lf encoding=UTF-8
-*.cfg text eol=lf encoding=UTF-8
-*.ini text eol=lf encoding=UTF-8
-*.xml text eol=lf encoding=UTF-8
-*.html text eol=lf encoding=UTF-8
-*.css text eol=lf encoding=UTF-8
-*.js text eol=lf encoding=UTF-8
-*.ts text eol=lf encoding=UTF-8
-*.sh text eol=lf encoding=UTF-8
-*.env text eol=lf encoding=UTF-8
-*.example text eol=lf encoding=UTF-8
+# Windows-specific files - always use CRLF
+*.bat text eol=crlf
+*.ps1 text eol=crlf
+*.cmd text eol=crlf
 
-# Windows-specific files (use CRLF for Windows batch/cmd files)
-*.bat text eol=crlf encoding=UTF-8
-*.cmd text eol=crlf encoding=UTF-8
-*.ps1 text eol=crlf encoding=UTF-8
+# Shell scripts - always use LF (for WSL/Git Bash compatibility)
+*.sh text eol=lf
 
-# Documentation files
-LICENSE text eol=lf encoding=UTF-8
-README text eol=lf encoding=UTF-8
-CHANGELOG text eol=lf encoding=UTF-8
-CONTRIBUTING text eol=lf encoding=UTF-8
+# Python files - use LF (Python standard, works on all platforms)
+*.py text eol=lf
+*.pyi text eol=lf
 
-# Git configuration files
-.gitignore text eol=lf encoding=UTF-8
-.gitattributes text eol=lf encoding=UTF-8
-.gitmodules text eol=lf encoding=UTF-8
+# Config files - use LF (standard for cross-platform tools)
+*.json text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+*.toml text eol=lf
+*.ini text eol=lf
+*.cfg text eol=lf
+*.conf text eol=lf
+.env* text eol=lf
+.envrc text eol=lf
 
-# GitHub files
-.github/** text eol=lf encoding=UTF-8
+# Documentation - use LF (Markdown standard)
+*.md text eol=lf
+*.txt text eol=lf
+*.rst text eol=lf
 
-# Binary files (explicitly mark as binary to prevent encoding issues)
+# Web files - use LF (web standard)
+*.html text eol=lf
+*.css text eol=lf
+*.scss text eol=lf
+*.js text eol=lf
+*.ts text eol=lf
+*.jsx text eol=lf
+*.tsx text eol=lf
+*.vue text eol=lf
+*.json text eol=lf
+
+# Binary files - do not normalize
 *.png binary
 *.jpg binary
 *.jpeg binary
@@ -65,7 +67,45 @@ CONTRIBUTING text eol=lf encoding=UTF-8
 *.pyd binary
 *.dll binary
 *.exe binary
-*.so binary
+
+# Git files
+.gitattributes text eol=lf
+.gitignore text eol=lf
+.gitmodules text eol=lf
+
+# IDE files
+.editorconfig text eol=lf
+.vscode/* text eol=lf
+*.code-workspace text eol=lf
+
+# Database files
 *.db binary
 *.sqlite binary
 *.sqlite3 binary
+
+# Archives
+*.tar binary
+*.tgz binary
+
+# Special handling for line ending normalization
+# Prevent Git from trying to normalize these files
+*.csv text eol=lf
+*.tsv text eol=lf
+*.sql text eol=lf
+
+# Linguist overrides (for GitHub language statistics)
+# Mark test files
+_meta/tests/* linguist-vendored
+**/tests/** linguist-vendored
+*.spec.ts linguist-vendored
+*.test.ts linguist-vendored
+*.spec.js linguist-vendored
+*.test.js linguist-vendored
+test_*.py linguist-vendored
+
+# Mark generated files
+*.min.js linguist-generated
+*.min.css linguist-generated
+dist/** linguist-generated
+build/** linguist-generated
+.vite/** linguist-generated
