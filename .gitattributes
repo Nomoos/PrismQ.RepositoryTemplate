@@ -42,7 +42,6 @@
 *.jsx text eol=lf
 *.tsx text eol=lf
 *.vue text eol=lf
-*.json text eol=lf
 
 # Binary files - do not normalize
 *.png binary

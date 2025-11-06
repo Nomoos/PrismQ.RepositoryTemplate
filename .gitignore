@@ -47,7 +47,6 @@ ENV/
 env/
 .env
 .env.local
-.Python
 env.bak/
 venv.bak/
 
