@@ -66,6 +66,7 @@
 *.pyd binary
 *.dll binary
 *.exe binary
+*.so binary
 
 # Git files
 .gitattributes text eol=lf
