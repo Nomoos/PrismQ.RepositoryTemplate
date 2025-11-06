@@ -95,6 +95,7 @@
 
 # Linguist overrides (for GitHub language statistics)
 # Mark test files
+_meta/tests/* linguist-vendored
 **/tests/** linguist-vendored
 *.spec.ts linguist-vendored
 *.test.ts linguist-vendored
