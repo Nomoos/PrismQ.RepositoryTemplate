@@ -1,4 +1,17 @@
-# Python
+# Backup files
+*.bak
+*.bak/
+*.backup
+Sources.bak/
+
+# Git merge conflict files
+*_BACKUP_*
+*_BASE_*
+*_LOCAL_*
+*_REMOTE_*
+*.orig
+
+# Python - Build and Distribution
 __pycache__/
 *.py[cod]
 *$py.class
@@ -16,133 +29,89 @@ parts/
 sdist/
 var/
 wheels/
+pip-wheel-metadata/
+share/python-wheels/
 *.egg-info/
 .installed.cfg
 *.egg
+MANIFEST
+*.manifest
+*.spec
 
-# Documentation builds
-_meta/docs/build/
-
-# Virtual environments
+# Virtual environments (including per-project venvs)
 venv/
+*/venv/
+.venv/
+*/.venv/
 ENV/
 env/
-
-# Environment variables
 .env
+.env.local
+env.bak/
+venv.bak/
 
-# IDEs - Visual Studio Code
-.vscode/
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
-*.code-workspace
-
-# IDEs - JetBrains (PyCharm, Rider, IntelliJ IDEA, WebStorm, etc.)
+# IDE - Comprehensive
 .idea/
-.idea/**/workspace.xml
-.idea/**/tasks.xml
-.idea/**/usage.statistics.xml
-.idea/**/dictionaries
-.idea/**/shelf
-.idea/**/contentModel.xml
-.idea/**/dataSources/
-.idea/**/dataSources.ids
-.idea/**/dataSources.local.xml
-.idea/**/sqlDataSources.xml
-.idea/**/dynamic.xml
-.idea/**/uiDesigner.xml
-.idea/**/dbnavigator.xml
-.idea/**/gradle.xml
-.idea/**/libraries
-*.iws
-*.iml
-*.ipr
-out/
-.idea_modules/
-
-# IDEs - Vim/Emacs
+.vscode/
 *.swp
 *.swo
 *~
-.netrwhist
+.project
+.pydevproject
+.settings/
+*.sublime-project
+*.sublime-workspace
 
-# Database
+# OS - Cross-platform
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Testing - Comprehensive
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.nox/
+.hypothesis/
+*.cover
+*.py,cover
+.cache
+nosetests.xml
+coverage.xml
+*.coveragerc
+
+# Logs and Runtime
+*.log
+*.pot
+*.pid
+*.seed
+*.pid.lock
+
+# Databases
 *.db
 *.sqlite
 *.sqlite3
-*.s3db
-*.db-shm
-*.db-wal
-*.db-journal
+db.sqlite3
 
-# C# / .NET
-bin/
-obj/
-*.suo
-*.user
-*.userosscache
-*.sln.docstates
-*.userprefs
-*.pidb
-*.booproj
-*.svd
-*.pdb
-*.dll
-*.exe
-!*.exe.config
-*.mdb
-*.opendb
-*.VC.db
-*.VC.VC.opendb
-[Dd]ebug/
-[Dd]ebugPublic/
-[Rr]elease/
-[Rr]eleases/
-x64/
-x86/
-[Ww][Ii][Nn]32/
-[Aa][Rr][Mm]/
-[Aa][Rr][Mm]64/
-bld/
-[Bb]in/
-[Oo]bj/
-[Ll]og/
-[Ll]ogs/
-.vs/
-*.pidb.meta
-*.pdb.meta
-*.mdb.meta
+# Documentation builds
+docs/_build/
+docs/.doctrees/
+site/
+_meta/docs/build/
 
-# NuGet Packages
-*.nupkg
-*.snupkg
-**/[Pp]ackages/*
-!**/[Pp]ackages/build/
-project.lock.json
-project.fragment.lock.json
-artifacts/
+# MyPy
+.mypy_cache/
+.dmypy.json
+dmypy.json
 
-# Test coverage
-.coverage
-htmlcov/
-.pytest_cache/
-coverage.xml
-*.cover
-*.py,cover
-TestResults/
+# Ruff
+.ruff_cache/
 
-# OS
-Thumbs.db
-
-# Logs
-*.log
-
-# Project specific
+# Runtime data files
 data/
-output/
-temp/
-cache/
-models/
